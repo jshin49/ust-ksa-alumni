@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :entrance_year, presence: true
   validates :graduation_year, presence: true
-
+  	
+  #User.where("#{User.interests[:IT]} = ANY (interests)")
 end

@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20150512085750) do
     t.datetime "graduation_year"
     t.string   "status"
     t.string   "name"
-    t.integer  "interests",              default: [],              array: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

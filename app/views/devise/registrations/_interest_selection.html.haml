@@ -1,0 +1,14 @@
+#interest_selection
+	%h3 Interested Industries
+	.field
+	#favorite_industries
+	- @favorite_industries.each do |industry|
+		= check_box_tag industry.name
+		= label_tag industry.name
+	%br/
+	%br/
+	#other_industries
+	- @other_industries.each do |industry|
+		= check_box_tag industry.name
+		= label_tag industry.name
+	  

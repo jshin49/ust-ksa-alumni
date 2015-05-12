@@ -1,0 +1,27 @@
+#major_selection
+    %h3 Major
+    .field
+        %h4 School of Science
+        - @ssc.each do |major|
+            = check_box_tag major.name, major.code
+            = label_tag major.name
+            
+        %h4 School of Engineering
+        - @seng.each do |major|
+            = check_box_tag major.name, major.code
+            = label_tag major.name
+            
+        %h4 School of Business
+        - @sbm.each do |major|
+            = check_box_tag major.name, major.code
+            = label_tag major.name
+            
+        %h4 School of Humanities and Social Science
+        - @huma.each do |major|
+            = check_box_tag major.name, major.code
+            = label_tag major.name
+            
+        %h4 Interdisciplinary Programs Office
+        - @ipo.each do |major|
+            = check_box_tag major.name, major.code
+            = label_tag major.name

@@ -155,6 +155,48 @@ industry_list = [
    ["Writing and Editing",true]
 ]
 
+major_list = [
+  ["School of Science", "ENVS", "Environmental Science"],
+  ["School of Science", "BCB", "Biochemistry and Cell Biology"],
+  ["School of Science", "BISC", "Biological Science"],
+  ["School of Science", "CHEM", "Chemistry"],
+  ["School of Science", "MATH", "Mathematics"],
+  ["School of Science", "MAEC", "Mathematics and Economics"],
+  ["School of Science", "PHYS", "Physics"],
+  ["School of Engineering", "CENG", "Chemical Engineering"],
+  ["School of Engineering", "CBME", "Chemical and Biomolecular Engineering"],
+  ["School of Engineering", "CEEV", "Chemical and Environmental Engineering"],
+  ["School of Engineering", "CIVL", "Civil Engineering"],
+  ["School of Engineering", "CIEV", "Civil and Environmental Engineering"],
+  ["School of Engineering", "CPEG", "Computer Engineering"],
+  ["School of Engineering", "COMP", "Computer Science"],
+  ["School of Engineering", "ELEC", "Electronic Engineering"],
+  ["School of Engineering", "IEEM", "Industrial Engineering and Engineering Management"],
+  ["School of Engineering", "IELM", "Logistics Management and Engineering"],
+  ["School of Engineering", "MECH", "Mechanical Engineering"],
+  ["School of Engineering", "ELEC", "Electronic Engineering"],
+  ["School of Engineering", "COSC", "BSc in Computer Science"],
+  ["School of Business", "ACCT", "Accounting"],
+  ["School of Business", "ECON", "Economics"],
+  ["School of Business", "FINA", "Finance"],
+  ["School of Business", "GBM", "General Business Management"],
+  ["School of Business", "GBUS", "Global Business"],
+  ["School of Business", "IS", "Information Systems"],
+  ["School of Business", "OM", "Operations Management"],
+  ["School of Business", "MARK", "Marketing"],
+  ["School of Business", "MGMT", "Management"],
+  ["School of Business", "ECOF", "BSc in Economics & Finance"],
+  ["School of Business", "QFIN", "BSc in Quantitative Finance"],
+  ["School of Business", "WBB", "World Business"],
+  ["School of Humanities and Social Science", "GCS", "Global China Studies"],
+  ["Interdisciplinary Programs Office","RMBI", "Risk Management and Business Intelligence"],
+  ["Interdisciplinary Programs Office","EVMT", "Environmental Management and Technology"]
+]
+
 industry_list.each do |name, favorite|
   Interest.create( name: name, favorite: favorite )
+end
+
+major_list.each do |school, code, name|
+  Major.create( school:school, name: name, code:code )
 end

@@ -194,7 +194,7 @@ major_list = [
 ]
 
 industry_list.each do |name, favorite|
-  Interest.create( name: name, favorite: favorite )
+  Industry.create( name: name, favorite: favorite )
 end
 
 major_list.each do |school, code, name|

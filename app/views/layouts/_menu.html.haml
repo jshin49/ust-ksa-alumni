@@ -1,0 +1,22 @@
+#menu_container
+  #menu_header
+    %h1#logo ALUMNI
+  - if user_signed_in?
+    %p
+      Hi, #{current_user.name}!
+    %p
+      = link_to "Invite", '#'
+      your friends
+    %p
+      = link_to "Update", '#'
+      your interests
+  - else
+    = link_to "Login", new_user_session_path
+#toggle_box
+  %h2 Area
+  %select
+  %h2 Order
+  %select
+#menu_footer
+  - if user_signed_in?
+    = link_to "Logout", destroy_user_session_path, method: :delete

@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  get 'user/index'
+
   get 'home/index'
 
   devise_for :users, :controllers => { registrations: 'registrations', sessions: "sessions"}
   
   as :user do
-    put 'users/:id' => 'registrations#update', :as => 'update_user'            
+    put 'users/:id' => 'registrations#update', :as => 'update_user'  
+    get 'users' => 'user#index', :as => 'users'          
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

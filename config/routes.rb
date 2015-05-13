@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'home/index'
 
-  devise_for :users, :controllers => { registrations: 'registrations'}
+  devise_for :users, :controllers => { registrations: 'registrations', sessions: "sessions"}
+  
   as :user do
     put 'users/:id' => 'registrations#update', :as => 'update_user'            
   end

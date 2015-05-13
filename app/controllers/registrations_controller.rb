@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
     @other_industries = Industry.where(favorite:false)
     
     @ticked_majors = current_user.majors
-    @ticked_industries = current_user.industries
+    @ticked_industries = current_user.interested_industries
   end
   
   def update
@@ -29,7 +29,7 @@ class RegistrationsController < Devise::RegistrationsController
       params[:industry_ids].each do |industry_id|
         industries << Industry.find_by_id(industry_id)
       end   
-      current_user.industries = industries
+      current_user.interested_industries = industries
     end
     
     if current_user.save

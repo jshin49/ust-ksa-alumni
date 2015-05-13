@@ -10,6 +10,13 @@ class User < ActiveRecord::Base
   
   has_many :interests
   has_many :declarations
-  has_many :industries, through: :interests
+  has_many :experiences
+  
+  has_many :interested_industries, through: :interests,
+           class_name: "Industry",
+           source: :industry
+  has_many :experienced_industries, through: :experiences,
+           class_name: "Industry",
+           source: :industry
   has_many :majors, through: :declarations
 end

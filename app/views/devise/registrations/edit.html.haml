@@ -9,24 +9,7 @@
     = f.email_field :email, autofocus: true, disabled:true
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  
-  .field
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  
-  .field
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "off"
+      Currently waiting confirmation for: #{resource.unconfirmed_email}  
   .field
     = f.label :entrance_year
     %br/
@@ -37,8 +20,15 @@
     = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
   
   - if @status == "alumni"
-    = render partial: 'industry_selection', locals:{is_interested_industry:false, ticked: @ticked_experienced_industries}
-        
+    .field 
+      = f.label :location
+      %br/
+      = f.text_field :location
+    .field  
+      = f.label :organization
+      %br/
+      = f.text_field :organization
+    = render partial: 'industry_selection', locals:{is_interested_industry:false, ticked: @ticked_experienced_industries}	      
   
   = render 'major_selection'
   = render partial: 'industry_selection', locals:{is_interested_industry:true, ticked: @ticked_interested_industries}

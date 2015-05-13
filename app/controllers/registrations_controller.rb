@@ -20,6 +20,19 @@ class RegistrationsController < Devise::RegistrationsController
   
   def update
     current_user.status = determine_status(current_user.graduation_year)
+    
+    if params[:user][:location]
+      current_user.location = params[:user][:location]
+    end
+    
+    if params[:user][:organization]
+      current_user.organization = params[:user][:organization]
+    end
+    
+
+    current_user.entrance_year = Date.civil(params[:user]["entrance_year(1i)"].to_i, params[:user]["entrance_year(2i)"].to_i)
+    current_user.graduation_year = Date.civil(params[:user]["graduation_year(1i)"].to_i,params[:user]["graduation_year(2i)"].to_i)
+    
     if params[:major_ids]
       majors = []
       params[:major_ids].each do |major_id|

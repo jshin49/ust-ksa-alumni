@@ -1,0 +1,6 @@
+-if shouldCheck
+	= check_box_tag "major_ids[]", major.id, true, id:"major_ids_#{major.id}"
+- else
+	= check_box_tag "major_ids[]", major.id, false, id:"major_ids_#{major.id}"
+= label_tag "major_ids[#{major.id}]", major.code
+            

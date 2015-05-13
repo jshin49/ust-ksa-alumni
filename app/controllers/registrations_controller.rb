@@ -10,6 +10,8 @@ class RegistrationsController < Devise::RegistrationsController
     @favorite_industries = Industry.where(favorite:true)
     @other_industries = Industry.where(favorite:false)
     
+    @ticked_majors = current_user.majors
+    @ticked_industries = current_user.industries
   end
   
   def update

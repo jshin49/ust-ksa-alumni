@@ -8,7 +8,7 @@
       = link_to "Invite", '#'
       your friends
     %p
-      = link_to "Update", '#'
+      = link_to "Update", edit_registration_path(current_user)
       your interests
   - else
     = link_to "Login", new_user_session_path

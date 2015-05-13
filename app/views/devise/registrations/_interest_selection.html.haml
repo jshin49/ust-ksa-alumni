@@ -3,12 +3,14 @@
 	.field
 	#favorite_industries
 	- @favorite_industries.each do |industry|
-		= check_box_tag industry.name
-		= label_tag industry.name
+		= check_box_tag "industry_ids[]", industry.id, false, id:"industry_ids_#{industry.id}"
+		= label_tag "industry_ids[#{industry.id}]", industry.name
+		    
 	%br/
 	%br/
+	
 	#other_industries
 	- @other_industries.each do |industry|
-		= check_box_tag industry.name
-		= label_tag industry.name
+		= check_box_tag "industry_ids[]", industry.id, false, id:"industry_ids_#{industry.id}"
+		= label_tag "industry_ids[#{industry.id}]", industry.name
 	  

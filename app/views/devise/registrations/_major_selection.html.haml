@@ -3,25 +3,26 @@
     .field
         %h4 School of Science
         - @ssc.each do |major|
-            = check_box_tag major.name, major.code
-            = label_tag major.name
+            = check_box_tag "major_ids[]", major.id, false, id:"major_ids_#{major.id}"
+            = label_tag "major_ids[#{major.id}]", major.code
             
         %h4 School of Engineering
         - @seng.each do |major|
-            = check_box_tag major.name, major.code
-            = label_tag major.name
+            = check_box_tag "major_ids[]", major.id, false, id:"major_ids_#{major.id}"
+            = label_tag "major_ids[#{major.id}]", major.code
             
         %h4 School of Business
         - @sbm.each do |major|
-            = check_box_tag major.name, major.code
-            = label_tag major.name
+            = check_box_tag "major_ids[]", major.id, false, id:"major_ids_#{major.id}"
+            = label_tag "major_ids[#{major.id}]", major.code
             
         %h4 School of Humanities and Social Science
         - @huma.each do |major|
-            = check_box_tag major.name, major.code
-            = label_tag major.name
+            = check_box_tag "major_ids[]", major.id, false, id:"major_ids_#{major.id}"
+            = label_tag "major_ids[#{major.id}]", major.code
             
         %h4 Interdisciplinary Programs Office
         - @ipo.each do |major|
-            = check_box_tag major.name, major.code
-            = label_tag major.name
+            = check_box_tag "major_ids[]", major.id, false, id:"major_ids_#{major.id}"
+            = label_tag "major_ids[#{major.id}]", major.code
+            

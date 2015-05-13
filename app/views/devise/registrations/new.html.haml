@@ -23,11 +23,11 @@
   .field
     = f.label :entrance_year
     %br/
-    = f.date_field :entrance_year
+    = f.date_select :entrance_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 9}}
   .field
     = f.label :graduation_year
     %br/
-    = f.date_field :graduation_year
+    = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"

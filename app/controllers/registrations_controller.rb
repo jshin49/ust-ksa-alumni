@@ -15,6 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   def update
+    current_user.status = determine_status(current_user.graduation_year)
     if params[:major_ids]
       majors = []
       params[:major_ids].each do |major_id|
@@ -39,7 +40,22 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
   
+  protected
+  
+  def after_sign_up_path_for(resource)
+    edit_user_registration_path
+  end
+  
   private
+  
+  def determine_status(graduation_date)
+    if (graduation_date.to_date.future?)
+      "current"
+    else
+      "alumni"
+    end
+  
+  end
   
   def sign_up_params
     params.require(:user).permit(:name, :entrance_year, :graduation_year, :email, :password, :password_confirmation,)

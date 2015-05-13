@@ -36,8 +36,12 @@
     %br/
     = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
   
+  - if @status == "alumni"
+    = render partial: 'industry_selection', locals:{is_interested_industry:false, ticked: @ticked_experienced_industries}
+        
+  
   = render 'major_selection'
-  = render 'industry_selection'
+  = render partial: 'industry_selection', locals:{is_interested_industry:true, ticked: @ticked_interested_industries}
         
   .actions
     = f.submit "Update"

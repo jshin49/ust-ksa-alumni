@@ -1,6 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
  
   def edit
+    @status = determine_status(current_user.graduation_year)
+  
     @ssc = Major.where(school: "School of Science")
     @seng = Major.where(school: "School of Engineering")
     @sbm = Major.where(school: "School of Business")
@@ -11,7 +13,9 @@ class RegistrationsController < Devise::RegistrationsController
     @other_industries = Industry.where(favorite:false)
     
     @ticked_majors = current_user.majors
-    @ticked_industries = current_user.interested_industries
+    @ticked_interested_industries = current_user.interested_industries
+    @ticked_experienced_industries = current_user.experienced_industries
+    
   end
   
   def update
@@ -24,12 +28,20 @@ class RegistrationsController < Devise::RegistrationsController
       current_user.majors = majors
     end
     
-    if params[:industry_ids]
+    if params[:interested_industry_ids]
       industries = []
-      params[:industry_ids].each do |industry_id|
+      params[:interested_industry_ids].each do |industry_id|
         industries << Industry.find_by_id(industry_id)
       end   
       current_user.interested_industries = industries
+    end
+    
+    if params[:experienced_industry_ids]
+      industries = []
+      params[:experienced_industry_ids].each do |industry_id|
+        industries << Industry.find_by_id(industry_id)
+      end   
+      current_user.experienced_industries = industries
     end
     
     if current_user.save

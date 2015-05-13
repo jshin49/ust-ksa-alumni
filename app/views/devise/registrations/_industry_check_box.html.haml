@@ -1,6 +1,11 @@
-- if shouldCheck
-	= check_box_tag "industry_ids[]", industry.id, true, id:"industry_ids_#{industry.id}"
+- if is_interested_industry
+	- tag_id = "interested_industry_ids"
 - else
-	= check_box_tag "industry_ids[]", industry.id, false, id:"industry_ids_#{industry.id}"
-= label_tag "industry_ids[#{industry.id}]", industry.name
+	- tag_id = "experienced_industry_ids"
+	
+- if shouldCheck
+	= check_box_tag "#{tag_id}[]", industry.id, true, id:"#{tag_id}_#{industry.id}"
+- else
+	= check_box_tag "#{tag_id}[]", industry.id, false, id:"#{tag_id}_#{industry.id}"
+= label_tag "#{tag_id}[#{industry.id}]", industry.name
 		

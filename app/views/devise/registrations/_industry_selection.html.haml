@@ -1,13 +1,16 @@
-#interest_selection
-	%h3 Interested Industries
+.industry_selection
+	-if is_interested_industry
+		%h3 Interested Industries
+	-else 
+		%h3 Experienced Industries
 	.field
 	#favorite_industries
 	- @favorite_industries.each do |industry|
-		= render partial: 'industry_check_box', locals: {shouldCheck: @ticked_industries.include?(industry), industry: industry}
+		= render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}
 		    
 	%br/
 	%br/
 	
 	#other_industries
 	- @other_industries.each do |industry|
-		= render partial: 'industry_check_box', locals: {shouldCheck: @ticked_industries.include?(industry), industry: industry}
+		= render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}

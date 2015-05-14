@@ -1,6 +1,7 @@
 class UserController < ApplicationController
   def index  
-    @alumni = get_alumni
+    @alumni = get_users_from_params.where(status:"alumni").uniq
+    @current_students = get_users_from_params.where(status:"current").uniq
     
     @schools = get_schools
     @majors = get_majors_with_declaration     
@@ -18,9 +19,9 @@ class UserController < ApplicationController
   
   private 
   
-  def get_alumni
+  def get_users_from_params
     if params[:school]
-      return User.joins(:majors).where(majors: {school: params[:school]})
+      return User.joins(:majors).where( majors: {school: params[:school]})
     elsif params[:major]
       return User.joins(:majors).where(majors: {id: params[:major]})
     elsif params[:industry]

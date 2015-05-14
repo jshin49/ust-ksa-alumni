@@ -1,1 +1,1 @@
-$("#alumni_container").html("<%= escape_javascript(render partial: 'users', locals: { alumni: @alumni } ) %>"); 
+$("#users_container").html("<%= escape_javascript(render partial: 'users', locals: { alumni: @alumni, current_student: @current_students } ) %>"); 

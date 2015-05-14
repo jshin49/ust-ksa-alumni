@@ -1,6 +1,6 @@
 #toggle_box
   %h3 Major
-  %select 
+  =select :toggle, :major, @majors.collect {|i| [i.code, i.id]}, prompt: 'Select Major'
   
   %h3 Industry
   %select

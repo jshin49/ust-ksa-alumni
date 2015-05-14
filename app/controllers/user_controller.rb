@@ -22,7 +22,7 @@ class UserController < ApplicationController
     if params[:school]
       return User.joins(:majors).where(majors: {school: params[:school]})
     elsif params[:major]
-      return User.joins(:majors).where(majors: {code: params[:major]})
+      return User.joins(:majors).where(majors: {id: params[:major]})
     elsif params[:industry]
       return User.joins(:experienced_industries).where(industries: {id: params[:industry]})
     elsif params[:entrance_year]

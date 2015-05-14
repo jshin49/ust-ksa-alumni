@@ -1,6 +1,8 @@
 class UserController < ApplicationController
-  def index  
-    @alumni = User.where(status: "alumni")
+  def index 
+  
+     
+    @alumni = get_alumni
     
     @schools = get_schools
     @majors = get_majors_with_declaration     
@@ -14,6 +16,26 @@ class UserController < ApplicationController
   end
   
   private 
+  
+  def get_alumni
+    if params[:school]
+      return User.joins(:majors).where(majors: {school: params[:school]})
+    elsif params[:major]
+      return User.joins(:majors).where(majors: {code: params[:major]})
+    elsif params[:industry]
+      return User.joins(:experienced_industries).where(industries: {id: params[:industry]})
+    elsif params[:entrance_year]
+      date_range = Time.new(params[:entrance_year],1,1)..Time.new(params[:entrance_year],12,31)
+      return User.where(entrance_year: date_range)
+    elsif params[:graduation_year]
+      date_range = Time.new(params[:graduation_year],1,1)..Time.new(params[:graduation_year],12,31)
+      return User.where(graduation_year: date_range)
+    elsif params[:location] 	
+      return User.where(location: params[:location])
+    else
+      return User.where(status: "alumni")
+    end
+  end
   
   def get_industries_with_experience
     unique_industries_ids = Experience.distinct.pluck(:industry_id)

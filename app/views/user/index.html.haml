@@ -1,3 +1,3 @@
-- if !@alumni.nil?
-	- @alumni.each do |alumnus| 
-		=render partial: 'main_user', locals:{alumnus:alumnus} 
+#alumni_container	
+	=render partial: 'users', locals:{alumni: @alumni} 
+	

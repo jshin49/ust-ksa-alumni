@@ -1,7 +1,5 @@
 class UserController < ApplicationController
-  def index 
-  
-     
+  def index  
     @alumni = get_alumni
     
     @schools = get_schools
@@ -12,7 +10,10 @@ class UserController < ApplicationController
     @graduation_years = get_graduation_years
     @locations = get_locations
     
-    render layout: 'layouts/user_index'
+    respond_to do |format|
+      format.js
+      format.html {render layout: 'layouts/user_index'}
+    end    
   end
   
   private 

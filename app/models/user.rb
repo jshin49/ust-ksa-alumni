@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  before_save :default_values
+
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
@@ -19,4 +22,10 @@ class User < ActiveRecord::Base
            class_name: "Industry",
            source: :industry
   has_many :majors, through: :declarations
+  
+  private
+  
+  def default_values
+    self.location ||= ""
+  end
 end

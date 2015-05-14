@@ -7,6 +7,7 @@ class UserController < ApplicationController
     
     @entrance_years = get_entrance_years
     @graduation_years = get_graduation_years
+    @locations = get_locations
     
     render layout: 'layouts/user_index'
   end
@@ -32,10 +33,15 @@ class UserController < ApplicationController
   end
   
   def get_entrance_years
-    return User.distinct.pluck(:entrance_year).collect {|i| i.year}.uniq.sort!
+    return User.distinct.pluck(:entrance_year).collect(&:year).uniq.sort!
   end
   
   def get_graduation_years
-    return User.distinct.pluck(:graduation_year).collect {|i| i.year}.uniq.sort!
+    return User.distinct.pluck(:graduation_year).collect(&:year).uniq.sort!
   end
+  
+  def get_locations
+    return User.distinct.pluck(:location).reject!(&:empty?).sort!  	
+  end
+  
 end

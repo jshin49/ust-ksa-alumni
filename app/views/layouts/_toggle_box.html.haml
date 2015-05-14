@@ -3,13 +3,13 @@
   =select :toggle, :major, @majors.collect {|i| [i.code, i.id]}, prompt: 'Select Major'
   
   %h3 Industry
-  %select
+  =select :toggle, :industry, @industries.collect {|i| [i.name, i.id]}, prompt: 'Select Industry'
   
   %h3 Entrance Year
-  %select
+  =select :toggle, :entrance_year, @entrance_years, prompt: 'Select Year'
   
   %h3 Graduation Year
-  %select
+  =select :toggle, :graduation_year, @graduation_years, prompt: 'Select Year'
   
   %h3 Location
   %select

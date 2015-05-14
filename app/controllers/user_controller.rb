@@ -2,6 +2,7 @@ class UserController < ApplicationController
   def index  
     @alumni = User.where(status: "alumni")
     
+    @schools = get_schools
     @majors = get_majors_with_declaration     
     @industries = get_industries_with_experience
     
@@ -42,6 +43,10 @@ class UserController < ApplicationController
   
   def get_locations
     return User.distinct.pluck(:location).reject!(&:empty?).sort!  	
+  end
+  
+  def get_schools
+    return Major.distinct.pluck(:school)
   end
   
 end

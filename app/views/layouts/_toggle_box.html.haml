@@ -1,4 +1,7 @@
 #toggle_box
+  %h3 School
+  =select :toggle, :school, @schools, prompt: 'Select School'
+  
   %h3 Major
   =select :toggle, :major, @majors.collect {|i| [i.code, i.id]}, prompt: 'Select Major'
   

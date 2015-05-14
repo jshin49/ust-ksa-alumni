@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
   validates :entrance_year, presence: true
   validates :graduation_year, presence: true
   
-  has_many :interests
-  has_many :declarations
-  has_many :experiences
+  has_many :interests, dependent: :destroy
+  has_many :declarations, dependent: :destroy
+  has_many :experiences, dependent: :destroy
   
   has_many :interested_industries, through: :interests,
            class_name: "Industry",

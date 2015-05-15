@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :interests, dependent: :destroy
   has_many :declarations, dependent: :destroy
   has_many :experiences, dependent: :destroy
+  has_many :invitations, dependent: :destroy
   
   has_many :interested_industries, through: :interests,
            class_name: "Industry",

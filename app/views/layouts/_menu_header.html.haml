@@ -5,7 +5,7 @@
   %p
     Hi, #{current_user.name}!
   %p
-    = link_to "Invite", '#'
+    = link_to "Invite", new_user_invitation_path(current_user)
     your friends
   %p
     = link_to "Update", edit_registration_path(current_user)

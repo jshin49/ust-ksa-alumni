@@ -2,8 +2,10 @@ class RegistrationsController < Devise::RegistrationsController
   
   
   def new
-    if params[:secret_key] && !Invitation.find(secret_key: params[:secret_key]).nil?
-    
+    if params[:secret_key] && !Invitation.where(secret_key: params[:secret_key]).nil?
+      	@invitation = Invitation.where(secret_key: params[:secret_key])
+        @user = User.new
+        @user.email = @invitation.first.email
     else
       redirect_to need_invite_path
     end
@@ -72,6 +74,11 @@ class RegistrationsController < Devise::RegistrationsController
     else
       render edit_user_registration_path
     end
+  end
+  
+  def create
+    super
+    Invitation.where(email: @user.email).destroy_all
   end
   
   def need_invite

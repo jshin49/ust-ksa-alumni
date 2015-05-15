@@ -6,4 +6,5 @@ Please be noted that if you are not a member of KSA your sign up may be cancelle
 
 Follow the link below for sign up. 
 
-<%= @link %>
+<%= url_for(controller: 'registrations',
+            action: 'new') + "?secret_key=#{@invitation.secret_key}"  %> 

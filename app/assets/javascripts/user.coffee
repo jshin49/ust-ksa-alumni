@@ -17,4 +17,5 @@ $ ->
 	$('#toggle_location').on 'change', ->
 		$.get(user_index_path + "?location="+this.value, result)
 		
-		
+	$('#user_sign_up_submit').on 'click', ->
+		$('#user_email').prop('disabled', false)	

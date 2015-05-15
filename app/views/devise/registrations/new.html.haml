@@ -8,7 +8,7 @@
   .field
     = f.label :email
     %br/
-    = f.email_field :email, autocomplete: "off"
+    = f.email_field :email, autocomplete: "off", disabled:true
   .field
     = f.label :password
     - if @validatable
@@ -29,5 +29,5 @@
     %br/
     = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 9}}
   .actions
-    = f.submit "Sign up"
+    = f.submit "Sign up", id: "user_sign_up_submit"
 = render "devise/shared/links"

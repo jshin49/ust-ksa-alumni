@@ -58,19 +58,27 @@ class UserController < ApplicationController
   end
   
   def get_entrance_years
-    return User.distinct.pluck(:entrance_year).collect(&:year).uniq.sort!
+    sort_list User.distinct.pluck(:entrance_year).collect(&:year).uniq
   end
   
   def get_graduation_years
-    return User.distinct.pluck(:graduation_year).collect(&:year).uniq.sort!
+    sort_list User.distinct.pluck(:graduation_year).collect(&:year).uniq
   end
   
   def get_locations
-    return User.distinct.pluck(:location).reject!(&:empty?).sort!  	
+    sort_list User.distinct.pluck(:location).reject!(&:empty?)
   end
   
   def get_schools
     return Major.distinct.pluck(:school)
+  end
+  
+  def sort_list(list)
+    if list.nil?
+      []
+    else
+      list.sort!
+    end
   end
   
 end

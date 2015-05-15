@@ -1,5 +1,14 @@
 class RegistrationsController < Devise::RegistrationsController
- 
+  
+  
+  def new
+    if params[:secret_key] && !Invitation.find(secret_key: params[:secret_key]).nil?
+    
+    else
+      redirect_to need_invite_path
+    end
+  end
+  	
   def edit
     @status = determine_status(current_user.graduation_year)
   
@@ -63,6 +72,10 @@ class RegistrationsController < Devise::RegistrationsController
     else
       render edit_user_registration_path
     end
+  end
+  
+  def need_invite
+  
   end
   
   protected

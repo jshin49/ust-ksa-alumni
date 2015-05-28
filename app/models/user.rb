@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
 
   
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:linkedin]
+
          
   validates :name, presence: true
   validates :entrance_year, presence: true
@@ -24,7 +26,7 @@ class User < ActiveRecord::Base
            source: :industry
   has_many :majors, through: :declarations
   
-  private
+  private 
   
   def default_values
     self.location ||= ""

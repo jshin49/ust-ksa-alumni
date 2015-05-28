@@ -20,10 +20,15 @@
     = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
   
   - if @status == "alumni"
+    = link_to "Connect LinkedIn",  user_omniauth_authorize_path(provider: "linkedin")    
     .field 
       = f.label :location
       %br/
       = f.text_field :location
+    .field 
+      = f.label :position
+      %br/
+      = f.text_field :position
     .field  
       = f.label :organization
       %br/

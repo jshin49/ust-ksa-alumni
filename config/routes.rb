@@ -1,7 +1,7 @@
 Rails.application.routes.draw do  
   get 'home/index'
 
-  devise_for :users, :controllers => { registrations: 'registrations', sessions: "sessions"}
+  devise_for :users, :controllers => { registrations: 'registrations', sessions: "sessions", omniauth_callbacks: "callbacks"}
   
   as :user do
     put 'users/:id' => 'registrations#update', :as => 'update_user'  

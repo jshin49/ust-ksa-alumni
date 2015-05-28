@@ -35,6 +35,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Haml rather than ERB
 gem "haml-rails", "~> 0.9"
 
+# For Linkedin Connection
+gem 'omniauth-linkedin-oauth2'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

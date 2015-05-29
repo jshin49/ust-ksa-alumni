@@ -1,4 +1,6 @@
 class InvitationsController < ApplicationController
+    before_action :authenticate_user!, only: [:new]
+
    # GET /invitations/new
   def new
     @invitation = Invitation.new

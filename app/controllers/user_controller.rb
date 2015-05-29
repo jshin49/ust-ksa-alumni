@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+
   def index  
     @alumni = get_users_from_params.where(status:"alumni").uniq
     @current_students = get_users_from_params.where(status:"current").uniq

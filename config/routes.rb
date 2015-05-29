@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   as :user do
     put 'users/:id' => 'registrations#update', :as => 'update_user'  
     get 'users' => 'user#index', :as => 'users' 
-    get 'need_invite' => 'registrations#need_invite', :as => 'need_invite'          
+    get 'need_invite' => 'registrations#need_invite', :as => 'need_invite' 
   end
   
   resources :user do

@@ -20,7 +20,10 @@
     = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
   
   - if @status == "alumni"
-    = link_to "Connect LinkedIn",  user_omniauth_authorize_path(provider: "linkedin")    
+    - unless is_linkedin_connected
+      = link_to "Connect LinkedIn",  user_omniauth_authorize_path(provider: "linkedin")    
+    - else
+      = link_to "Disconnect LinkedIn", update_user_path(current_user, disconnect_linkedin: true), method: :put, data:{confirm: "Are you sure? Your Linkedin might be great information for some people"}
     .field 
       = f.label :location
       %br/

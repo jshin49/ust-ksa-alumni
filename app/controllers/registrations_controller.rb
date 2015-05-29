@@ -75,9 +75,10 @@ class RegistrationsController < Devise::RegistrationsController
     end
     
     if current_user.save
-      flash[:notice] = "Update Complete"
+      flash[:notice] = "Successfully Updated!"
       redirect_to root_path
     else
+      flash[:error] = "Could Update information. Please try again"
       render edit_user_registration_path
     end
   end

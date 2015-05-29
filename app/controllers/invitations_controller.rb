@@ -15,6 +15,7 @@ class InvitationsController < ApplicationController
         InviteMailer.invite_friend(@user, @invitation).deliver_now
         format.html { redirect_to users_path, notice: 'Invitation was successfully sent.' }
       else
+        flash[:error] = "Cannot Send Invitation"
         format.html { render :new }
       end
     end

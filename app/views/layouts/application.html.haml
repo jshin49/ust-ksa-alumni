@@ -8,6 +8,11 @@
     = csrf_meta_tags
   %body
     #container
+      #flash_container
+        - if flash[:notice]
+          .notice= flash[:notice]
+        - if flash[:error]
+          .error= flash[:error]
       #content= yield
       #menu
         =render "layouts/menu_header"

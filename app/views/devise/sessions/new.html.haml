@@ -1,17 +1,31 @@
-%h2 Log in
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
+  .row
     .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+      .small-2.large-2.columns.text-align-right
+        = f.label :email, class: 'inline'
+      .small-5.large-5.columns.no_margin_padding
+        = f.email_field :email, autofocus: true
+      .small-5.large-5.columns
+  .row
+    .field
+      .small-2.large-2.columns.text-align-right
+        = f.label :password, class: 'inline'
+      .small-5.large-5.columns.no_margin_padding
+        = f.password_field :password, autocomplete: "off"
+      .small-5.large-5.columns
+  .row
+    .small-2.large-2.columns
+    .small-10.large-10.columns.no_margin_padding          
+      - if devise_mapping.rememberable?
+        .field
+          = f.check_box :remember_me
+          = f.label :remember_me
+  .row
+    .small-2.large-2.columns
+    .small-10.large-10.columns.no_margin_padding      
+      .actions
+        = f.submit "Log in", class: 'large button large-6 small-6'
+.row
+  .small-2.large-2.columns
+  .small-10.large-10.columns.no_margin_padding      
+    = render "devise/shared/links"

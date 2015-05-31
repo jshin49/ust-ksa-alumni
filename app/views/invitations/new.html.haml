@@ -1,3 +1,30 @@
-%h1 New invitation
-
-= render 'form'
+= form_for [current_user, @invitation] do |f|
+  - if @invitation.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@invitation.errors.count, "error")} prohibited this invitation from being saved:"
+      %ul
+        - @invitation.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .field
+      .small-2.large-2.columns.text-align-right
+        = f.label :email, class:'inline'
+      .small-5.large-5.columns.no_margin_padding      
+        = f.text_field :email
+      .small-5.large-5.columns
+  .row
+    .small-2.large-2.columns
+    .small-10.large-10.columns.no_margin_padding          
+      .actions
+        = f.submit 'Send Invitation', class: 'large button large-6 small-6'
+.row
+  .small-2.large-2.columns
+  .small-10.large-10.columns.no_margin_padding              
+    %h5.subheader
+      %ul
+        %li
+          You can only invite members of HKUST KSA (Korean Students' Association)
+        %li
+          Non-member invitation or sign up can be cancelled by admin.
+        %li
+          You can only send invite to UST domain email.

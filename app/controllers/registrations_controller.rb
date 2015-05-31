@@ -85,7 +85,9 @@ class RegistrationsController < Devise::RegistrationsController
   
   def create
     super
-    Invitation.where(email: @user.email).destroy_all
+    if User.find_by_email(@user.email)
+      Invitation.where(email: @user.email).destroy_all
+    end
   end
   
   def need_invite

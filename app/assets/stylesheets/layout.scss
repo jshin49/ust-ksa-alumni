@@ -1,15 +1,10 @@
-html, body, #container{
+html, body, #container, .container_column, #menu, #content_container{
   height: 100%;
 }
 
-#content{
-	float:left;
-	width:80%;
-}
-
-#menu{
-	background-color: lightskyblue;
-	float: right; 
-	height:100%;
-	width:20%;
+body{
+	width:1080px;
+	margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }

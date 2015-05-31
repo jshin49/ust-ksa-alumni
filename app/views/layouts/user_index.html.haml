@@ -6,10 +6,17 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
-    #container
-      #content= yield
-      #menu
-        =render "layouts/menu_header"
-        =render "layouts/toggle_box"
-        =render "layouts/menu_footer"
+  %body    
+    #menu.column.small-3.large-3.container_column
+      =render "layouts/menu_header"
+      =render "layouts/toggle_box"        
+      =render "layouts/menu_footer"
+    #content_container.column.small-9.large-9.container_column
+      #flash_container
+      - if flash[:notice]
+        .notice= flash[:notice]
+      - if flash[:error]
+        .error= flash[:error]
+      #content
+        =yield
+    

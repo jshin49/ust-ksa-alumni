@@ -38,6 +38,9 @@ gem "haml-rails", "~> 0.9"
 # For Linkedin Connection
 gem 'omniauth-linkedin-oauth2'
 
+# Frontend Framework
+gem 'foundation-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

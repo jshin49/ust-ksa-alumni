@@ -1,3 +1,14 @@
 // Place all the styles related to the user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.date_selector select{
+  width:25%;
+}
+
+#sign_up_notice{
+  margin-top:20px;
+  li{
+    color:blue;  
+  }
+}

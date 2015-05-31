@@ -1,33 +1,54 @@
-%h2 Sign up please
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
-  .field
-    = f.label :name
-    %br/
-    = f.text_field :name, autofocus: true, autocomplete: "off"
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autocomplete: "off", disabled:true
-  .field
-    = f.label :password
+  .field.row
+    .small-2.large-2.columns.text-align-right
+      = f.label :name, class: 'inline'
+    .small-5.large-5.columns.no_margin_padding    
+      = f.text_field :name, autofocus: true, autocomplete: "off"
+    .small-5.large-5.columns
+  .field.row
+    .small-2.large-2.columns.text-align-right
+      = f.label :email, class: 'inline'
+    .small-5.large-5.columns.no_margin_padding 
+      = f.email_field :email, autocomplete: "off", disabled:true
+    .small-5.large-5.columns
+  .field.row
+    .small-2.large-2.columns.text-align-right
+      = f.label :password
     - if @validatable
       %em
         (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :entrance_year
-    %br/
-    = f.date_select :entrance_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 9}}
-  .field
-    = f.label :graduation_year
-    %br/
-    = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 9}}
-  .actions
-    = f.submit "Sign up", id: "user_sign_up_submit"
-= render "devise/shared/links"
+    .small-5.large-5.columns.no_margin_padding     
+      = f.password_field :password, autocomplete: "off"
+    .small-5.large-5.columns
+  .field.row
+    .small-2.large-2.columns.text-align-right
+      = f.label :password_confirmation
+    .small-5.large-5.columns.no_margin_padding     
+      = f.password_field :password_confirmation, autocomplete: "off"
+    .small-5.large-5.columns
+  .field.row
+    .small-2.large-2.columns.text-align-right
+      = f.label :entrance_year
+    .small-10.large-10.columns.no_margin_padding.date_selector
+      = f.date_select :entrance_year, {start_year:2000, discard_day: true, use_short_month: true, 
+      default: {month: 9}, class: 'select-date'}
+  .field.row
+    .small-2.large-2.columns.text-align-right
+      = f.label :graduation_year
+    .small-10.large-10.columns.no_margin_padding.date_selector
+      = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, 
+      default: {month: 5}, class: 'select-date'}
+  .actions.row
+    .small-offset-2.large-offset-2.small-10.large-10.columns.no_margin_padding          
+      = f.submit "Sign up", id: "user_sign_up_submit", class: 'large button large-6 small-6'
+.row
+  .small-offset-2.large-offset-2.small-10.large-10.columns.no_margin_padding          
+    = render "devise/shared/links"
+.row#sign_up_notice
+  %h5.subheader
+    %ul
+      %li Only members of HKUST KSA (Korean Students' Association) can sign up.
+      %li Non-member invitation or sign up can be cancelled by admin.
+      %li You can only sign up with UST domain email.
+      

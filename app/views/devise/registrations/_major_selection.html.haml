@@ -1,22 +1,27 @@
 #major_selection
-    %h3 Major
-    .field
-        %h4 School of Science
-        - @ssc.each do |major|
-            = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}
-            
-        %h4 School of Engineering
-        - @seng.each do |major|
-            = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}
-
-        %h4 School of Business
-        - @sbm.each do |major|
-            = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}
-
-        %h4 School of Humanities and Social Science
-        - @huma.each do |major|
-            = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}
-
-        %h4 Interdisciplinary Programs Office
-        - @ipo.each do |major|
-            = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}
+  %h4 Major
+  .field
+    %h5.subheader School of Science
+    %ul.major_list
+      - @ssc.each do |major|
+        = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}
+          
+    %h5.subheader School of Engineering
+    %ul.major_list    
+      - @seng.each do |major|
+        = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}
+    
+    %h5.subheader School of Business
+    %ul.major_list
+      - @sbm.each do |major|
+        = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}
+    
+    %h5.subheader School of Humanities and Social Science
+    %ul.major_list
+      - @huma.each do |major|
+        = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}
+    
+    %h5.subheader Interdisciplinary Programs Office
+    %ul.major_list
+      - @ipo.each do |major|
+        = render partial: 'major_check_box', locals: {shouldCheck: @ticked_majors.include?(major), major: major}

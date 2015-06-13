@@ -6,12 +6,13 @@
     %h4.row.subheader Experienced Industries
     %h6.row.subheader Select industries that you have worked or studied.
   
-  .row#favorite_industries
-  - @favorite_industries.each do |industry|
-    = render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}
-	    
-  %br/
-  %br/
-  .row#other_industries
-  - @other_industries.each do |industry|
-    = render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}
+  .row
+    %ul.favorite_industries
+      - @favorite_industries.each do |industry|
+        = render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}
+  .row
+    .more_industries
+      =link_to "Click to see more choices...", '#'
+    %ul.other_industries
+      - @other_industries.each do |industry|
+        = render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}

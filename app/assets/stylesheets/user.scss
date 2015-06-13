@@ -24,4 +24,22 @@
 
 .industry_selection{
   margin-top:15px;
+  ul{
+    margin-top:20px;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    li{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
+
+   
+.other_industries{
+  display: none;
+}
+
+

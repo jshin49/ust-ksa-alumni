@@ -1,0 +1,7 @@
+- unless is_linkedin_connected
+  .button.medium.expand#linkedin_connect
+    = link_to "Connect LinkedIn",  user_omniauth_authorize_path(provider: "linkedin")    
+- else
+  .button.medium.expand.secondary#linkedin_disconnect  
+    = link_to "Disconnect LinkedIn", update_user_path(current_user, disconnect_linkedin: true), 
+    method: :put, data:{confirm: "Are you sure? Your Linkedin might be great information for some people"}

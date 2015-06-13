@@ -1,16 +1,17 @@
 .industry_selection
-	-if is_interested_industry
-		%h3 Interested Industries
-	-else 
-		%h3 Experienced Industries
-	.field
-	#favorite_industries
-	- @favorite_industries.each do |industry|
-		= render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}
-		    
-	%br/
-	%br/
-	
-	#other_industries
-	- @other_industries.each do |industry|
-		= render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}
+  -if is_interested_industry
+    %h4.row.subheader Interested Industries
+    %h6.row.subheader Select industries that you are interested in, no matter your experience or studies
+  -else 
+    %h4.row.subheader Experienced Industries
+    %h6.row.subheader Select industries that you have worked or studied.
+  
+  .row#favorite_industries
+  - @favorite_industries.each do |industry|
+    = render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}
+	    
+  %br/
+  %br/
+  .row#other_industries
+  - @other_industries.each do |industry|
+    = render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}

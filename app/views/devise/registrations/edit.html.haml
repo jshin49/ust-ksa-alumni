@@ -1,46 +1,56 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
+.row
+  %h2 Update your information
 = form_for(current_user, url: update_user_path(current_user), html: { method: :put }) do |f|
-  = devise_error_messages!
+  = devise_error_messages!  
+  %fieldset.row
+    %legend Basic Info
+    .field.row
+      .small-2.large-2.columns.text-align-right
+        = f.label :email, class:'inline'
+      .small-5.large-5.columns.no_margin_padding    
+        = f.email_field :email, autofocus: true, disabled:true
+      .small-5.large-5.columns
+    .field.row
+      .small-2.large-2.columns.text-align-right
+        = f.label :entrance_year
+      .small-10.large-10.columns.no_margin_padding.date_selector
+        = f.date_select :entrance_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 9}}
+    .field.row
+      .small-2.large-2.columns.text-align-right
+        = f.label :graduation_year
+      .small-10.large-10.columns.no_margin_padding.date_selector
+        = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
   
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, disabled:true
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}  
-  .field
-    = f.label :entrance_year
-    %br/
-    = f.date_select :entrance_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 9}}
-  .field
-    = f.label :graduation_year
-    %br/
-    = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
-  
-  - if @status == "alumni"
-    - unless is_linkedin_connected
-      = link_to "Connect LinkedIn",  user_omniauth_authorize_path(provider: "linkedin")    
-    - else
-      = link_to "Disconnect LinkedIn", update_user_path(current_user, disconnect_linkedin: true), method: :put, data:{confirm: "Are you sure? Your Linkedin might be great information for some people"}
-    .field 
-      = f.label :location
-      %br/
-      = f.text_field :location
-    .field 
-      = f.label :position
-      %br/
-      = f.text_field :position
-    .field  
-      = f.label :organization
-      %br/
-      = f.text_field :organization
-    = render partial: 'industry_selection', locals:{is_interested_industry:false, ticked: @ticked_experienced_industries}	      
-  
-  = render 'major_selection'
-  = render partial: 'industry_selection', locals:{is_interested_industry:true, ticked: @ticked_interested_industries}
-        
+  - if @status == "alumni"     
+    %fieldset.row
+      %legend Alumni Info
+      .row  
+        .small-offset-2.large-offset-2.small-3.large-3.columns
+          =render partial:'linkedin_button'      
+      .field.row
+        .small-2.large-2.columns.text-align-right        
+          = f.label :location, class:'inline'
+        .small-5.large-5.columns.no_margin_padding
+          = f.text_field :location
+        .small-5.large-5.columns
+      .field.row 
+        .small-2.large-2.columns.text-align-right
+          = f.label :position, class:'inline'
+        .small-5.large-5.columns.no_margin_padding 
+          = f.text_field :position
+        .small-5.large-5.columns
+      .field.row  
+        .small-2.large-2.columns.text-align-right
+          = f.label :organization, class:'inline'
+        .small-5.large-5.columns.no_margin_padding   
+          = f.text_field :organization
+        .small-5.large-5.columns          
+      = render partial: 'industry_selection', locals:{is_interested_industry:false, ticked: @ticked_experienced_industries}	      
+  %fieldset.row
+    %legend School Info  
+    = render 'major_selection'
+    = render partial: 'industry_selection', locals:{is_interested_industry:true, ticked: @ticked_interested_industries}
+          
   .actions
     = f.submit "Update"
 %h3 Cancel my account

@@ -1,4 +1,10 @@
-.alumnus_main_box
-	%h2= alumnus.name
-	=alumnus.organization
-	=alumnus.location
+.alumnus_main_box.columns.large-4.small-4
+  .alumnus_photo
+    - if !alumnus.profile_pic_url.nil?
+      =image_tag(alumnus.profile_pic_url) 
+    - else
+      =image_tag("default_profile_pic.png")  
+  .alumnus_description
+    %h2= alumnus.name
+    =alumnus.organization
+    =alumnus.location

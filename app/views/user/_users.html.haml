@@ -1,4 +1,4 @@
-#alumni_container
+#alumni_container.row
 	- if !alumni.nil?
 		- alumni.each do |alumnus| 
 			=render partial: 'alumni', locals:{alumnus:alumnus} 

@@ -6,25 +6,17 @@
         - @invitation.errors.full_messages.each do |msg|
           %li= msg
   .row
-    .field
-      .small-2.large-2.columns.text-align-right
-        = f.label :email, class:'inline'
-      .small-5.large-5.columns.no_margin_padding      
-        = f.text_field :email
-      .small-5.large-5.columns
-  .row
-    .small-2.large-2.columns
-    .small-10.large-10.columns.no_margin_padding          
+    .columns.large-6.large-centered
+      = f.text_field :email, placeholder: "UST Domain Email"
       .actions
-        = f.submit 'Send Invitation', class: 'large button large-6 small-6'
-.row
-  .small-2.large-2.columns
-  .small-10.large-10.columns.no_margin_padding              
-    %h5.subheader
-      %ul
-        %li
-          You can only invite members of HKUST KSA (Korean Students' Association)
-        %li
-          Non-member invitation or sign up can be cancelled by admin.
-        %li
-          You can only send invite to UST domain email.
+        = f.submit 'Send Invitation', class: 'large button large-12 small-12'
+  .row
+    .small-offset-3.large-offset-3.columns.no_margin_padding.end
+      %h5.subheader
+        %ul
+          %li
+            You can only invite members of HKUST KSA (Korean Students' Association)
+          %li
+            Non-member invitation or sign up can be cancelled by admin.
+          %li
+            You can only send invite to UST domain email.

@@ -1,10 +1,24 @@
-.alumnus_main_box.columns.large-4.small-4
-  .alumnus_photo
-    - if !alumnus.profile_pic_url.nil?
-      =image_tag(alumnus.profile_pic_url) 
-    - else
-      =image_tag("default_profile_pic.png")  
-  .alumnus_description
-    %h2= alumnus.name
-    =alumnus.organization
-    =alumnus.location
+.alumnus
+  .columns.large-2.small-2.alumnus_date
+    ="#{alumnus.entrance_year.strftime("%b %Y")}"
+    %br
+    ="- #{alumnus.graduation_year.strftime("%b %Y")}"
+  .columns.large-offset-1.small-offset-1.large-9.small-9.alumnus_description
+    %h2.name= alumnus.name
+    %p
+      =inline_svg "open_ionic/svg/book.svg", class: "icon"
+      =alumnus.majors_text
+    %p
+      =inline_svg "open_ionic/svg/heart.svg", class: "icon"
+      =alumnus.experienced_industries_text
+    %p
+      -if alumnus.position?
+        =inline_svg "open_ionic/svg/person.svg", class: "icon"
+        =alumnus.position
+      -if alumnus.organization?
+        =inline_svg "open_ionic/svg/people.svg", class: "icon"
+        =alumnus.organization
+      -if alumnus.location?
+        =inline_svg "open_ionic/svg/location.svg", class: "icon"
+        =alumnus.location
+%hr.divider

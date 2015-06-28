@@ -9,12 +9,12 @@
 #sign_up_notice{
   margin-top:20px;
   li{
-    color:blue;  
+    color:blue;
   }
 }
 
 #linkedin_disconnect{
-  font-size: 12px;  
+  font-size: 12px;
 }
 
 #linkedin_connect a{
@@ -37,16 +37,15 @@
   }
 }
 
-   
+
 .other_industries{
   display: none;
 }
 
-
 ul.major_list{
   columns: 6;
   -webkit-columns: 6;
-  -moz-columns: 6;  
+  -moz-columns: 6;
   li{
       list-style-type: none;
       margin: 0;
@@ -55,13 +54,28 @@ ul.major_list{
 }
 
 #update_button{
-  margin-top:20px; 
+  margin-top:20px;
 }
 
-.alumnus_photo{
-  background:yellow;
+.alumnus{
+  padding-top:10px;
+  padding-bottom:10px;
+  height:200px;
+  .alumnus_date{
+    position:relative;
+    top:50%;
+    transform: translateY(-50%);
+    text-align:center;
+  }
+  .alumnus_description{
+    padding-top:10px;
+  }
+  .profile_pic{
+    width:200px;
+    height:200px;
+  }
 }
 
-.alumnus_main_box{
-  background:blue;
+.divider{
+  margin:0px;
 }

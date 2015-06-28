@@ -3,7 +3,7 @@ html, body, #container, .container_column, #menu, #content_container{
 }
 
 body{
-	width:1080px;
+	width:960px;
 	margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -14,11 +14,11 @@ body{
 }
 
 .text-align-right{
-	text-align: right;		
+	text-align: right;
 }
 
 .text-align-center{
-	text-align: center;		
+	text-align: center;
 }
 
 .no_margin_padding{
@@ -28,4 +28,9 @@ body{
 
 .top-bar{
   background:skyblue;
+}
+
+.icon{
+  width:12px;
+  height:12px;
 }

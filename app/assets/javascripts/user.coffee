@@ -2,32 +2,37 @@
 # All this logic will automatically be available in application.js.
 $ ->
   
-  setAlumnusBox = () ->  
-    $('.alumnus_main_box').css({'height':$('.alumnus_main_box').width()*2+'px'})
-    $('.alumnus_photo').css({'width':$('.alumnus_main_box').width()+'px'})
-    $('.alumnus_photo').css({'height':$('.alumnus_main_box').width()+'px'})
-
+  dropDown = [$('#toggle_school'), $('#toggle_major'),$('#toggle_industry'),$('#toggle_entrance_year'),$('#toggle_graduation_year'),$('#toggle_location')]
+  resetDropDown = (count) ->  
+   for i in [0..5]
+     if (i!=count)
+       dropDown[i].val('');
+       dropDown[i].css("font-weight","normal");       
+     else
+       dropDown[i].css("font-weight","bold");
+   
+    
   user_index_path = "/users"
   result = (data) ->
   
   $('#toggle_school').on 'change', ->
     $.get(user_index_path + "?school="+this.value, result)
-    setAlumnusBox()
+    resetDropDown(0)
   $('#toggle_major').on 'change', ->
     $.get(user_index_path + "?major="+this.value, result)
-    setAlumnusBox()
+    resetDropDown(1)
   $('#toggle_industry').on 'change', ->
     $.get(user_index_path + "?industry="+this.value, result)
-    setAlumnusBox()
+    resetDropDown(2)
   $('#toggle_entrance_year').on 'change', ->
     $.get(user_index_path + "?entrance_year="+this.value, result)
-    setAlumnusBox()
+    resetDropDown(3)
   $('#toggle_graduation_year').on 'change', ->
     $.get(user_index_path + "?graduation_year="+this.value, result)
-    setAlumnusBox()
+    resetDropDown(4)
   $('#toggle_location').on 'change', ->
     $.get(user_index_path + "?location="+this.value, result)  
-    setAlumnusBox()	
+    resetDropDown(5)	
   
   $('#user_sign_up_submit').on 'click', ->
     $('#user_email').prop('disabled', false)	
@@ -35,5 +40,4 @@ $ ->
     $(this).hide()
     $(this).parent().next().show("slow")
     event.preventDefault()
-  setAlumnusBox()
   

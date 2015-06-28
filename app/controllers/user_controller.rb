@@ -12,11 +12,6 @@ class UserController < ApplicationController
     @entrance_years = get_entrance_years
     @graduation_years = get_graduation_years
     @locations = get_locations
-    
-    respond_to do |format|
-      format.js
-      format.html {render layout: 'layouts/user_index'}
-    end    
   end
   
   private 

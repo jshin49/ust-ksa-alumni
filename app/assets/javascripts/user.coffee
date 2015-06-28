@@ -6,7 +6,7 @@ $ ->
     $('.alumnus_main_box').css({'height':$('.alumnus_main_box').width()*2+'px'})
     $('.alumnus_photo').css({'width':$('.alumnus_main_box').width()+'px'})
     $('.alumnus_photo').css({'height':$('.alumnus_main_box').width()+'px'})
-    alert("hey"+$('.alumnus_main_box').width());
+
   user_index_path = "/users"
   result = (data) ->
   

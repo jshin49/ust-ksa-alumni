@@ -1,26 +1,33 @@
 class UserController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :show]
 
-  def index  
+  def index
     @alumni = get_users_from_params.where(status:"alumni").uniq
     @current_students = get_users_from_params.where(status:"current").uniq
-    
+
     @schools = get_schools
-    @majors = get_majors_with_declaration     
+    @majors = get_majors_with_declaration
     @industries = get_industries_with_experience
-    
+
     @entrance_years = get_entrance_years
     @graduation_years = get_graduation_years
     @locations = get_locations
-    
+
     respond_to do |format|
       format.js
       format.html
-    end    
+    end
   end
-  
-  private 
-  
+
+  def show
+    @user = User.find_by_id params[:id]
+    if @user.status != "alumni"
+      redirect_to users_url
+    end
+  end
+
+  private
+
   def get_users_from_params
     if params[:school]
       return User.joins(:majors).where( majors: {school: params[:school]})
@@ -34,13 +41,13 @@ class UserController < ApplicationController
     elsif params[:graduation_year]
       date_range = Time.new(params[:graduation_year],1,1)..Time.new(params[:graduation_year],12,31)
       return User.where(graduation_year: date_range)
-    elsif params[:location] 	
+    elsif params[:location]
       return User.where(location: params[:location])
     else
       return User.where(status: "alumni")
     end
   end
-  
+
   def get_industries_with_experience
     unique_industries_ids = Experience.distinct.pluck(:industry_id)
     unique_industries = []
@@ -49,7 +56,7 @@ class UserController < ApplicationController
     end
     return unique_industries.sort! {|x,y| x.name <=> y.name}
   end
-  
+
   def get_majors_with_declaration
     unique_major_ids = Declaration.distinct.pluck(:major_id)
     unique_majors = []
@@ -58,23 +65,23 @@ class UserController < ApplicationController
     end
     return unique_majors.sort! {|x,y| x.id <=> y.id}
   end
-  
+
   def get_entrance_years
     sort_list User.distinct.pluck(:entrance_year).collect(&:year).uniq
   end
-  
+
   def get_graduation_years
     sort_list User.distinct.pluck(:graduation_year).collect(&:year).uniq
   end
-  
+
   def get_locations
     sort_list User.distinct.pluck(:location).reject!(&:empty?)
   end
-  
+
   def get_schools
     return Major.distinct.pluck(:school)
   end
-  
+
   def sort_list(list)
     if list.nil?
       []
@@ -82,5 +89,5 @@ class UserController < ApplicationController
       list.sort!
     end
   end
-  
+
 end

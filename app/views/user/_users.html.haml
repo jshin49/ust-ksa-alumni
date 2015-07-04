@@ -1,9 +1,8 @@
-#alumni_container.row
+#alumni_container
 	- if !alumni.nil?
-		- alumni.each do |alumnus| 
-			=render partial: 'alumni', locals:{alumnus:alumnus} 
-#current_student_container	
+		- alumni.each do |alumnus|
+			=render partial: 'alumni', locals:{alumnus:alumnus}
+#current_student_container
 	- if !current_student.nil?
-		- current_student.each do |student| 
-			=render partial: 'student', locals:{student: student} 
-	
+		- current_student.each do |student|
+			=render partial: 'student', locals:{student: student}

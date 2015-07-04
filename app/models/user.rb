@@ -34,9 +34,16 @@ class User < ActiveRecord::Base
     text_format(experienced_industries)
   end
 
+  def interested_industries_text
+    text_format(interested_industries)
+  end
+
   private
 
   def text_format(array)
+    if array.nil?
+      return ""
+    end
     s = array.first.name
     if array.count == 1
       return s

@@ -67,15 +67,18 @@ ul.major_list{
     transform: translateY(-50%);
     text-align:center;
   }
-  .alumnus_description{
-    padding-top:10px;
-  }
-  .profile_pic{
-    width:200px;
-    height:200px;
-  }
+  padding-top:10px;
 }
 
-.divider{
-  margin:0px;
+.basic-info-card{
+  margin-top: 3px;
+}
+
+
+#user-contact{
+  margin-top: 50px;
+  .contact-icon{
+    width:20px;
+    height:20px;
+  }
 }

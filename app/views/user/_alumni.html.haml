@@ -9,9 +9,6 @@
       =inline_svg "open_ionic/svg/book.svg", class: "icon"
       =alumnus.majors_text
     %p
-      =inline_svg "open_ionic/svg/heart.svg", class: "icon"
-      =alumnus.experienced_industries_text
-    %p
       -if alumnus.position?
         =inline_svg "open_ionic/svg/person.svg", class: "icon"
         =alumnus.position
@@ -21,4 +18,7 @@
       -if alumnus.location?
         =inline_svg "open_ionic/svg/location.svg", class: "icon"
         =alumnus.location
+    %p
+      =inline_svg "open_ionic/svg/flag.svg", class: "icon"
+      =alumnus.experienced_industries_text
 %hr.divider

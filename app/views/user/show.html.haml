@@ -1,0 +1,42 @@
+.alumnus.user_container
+  .columns.large-2.small-2.alumnus_date
+    ="#{@user.entrance_year.strftime("%b %Y")}"
+    %br
+    ="- #{@user.graduation_year.strftime("%b %Y")}"
+  .columns.large-offset-1.small-offset-1.large-9.small-9.alumnus_description
+    #user-info
+      %h2.name= @user.name
+      #details
+        %p
+          =inline_svg "open_ionic/svg/book.svg", class: "icon"
+          %span.labels Major(s)
+          =@user.majors_text
+        -if @user.position?
+          %p
+            =inline_svg "open_ionic/svg/person.svg", class: "icon"
+            %span.labels Current Position
+            =@user.position
+        -if @user.organization?
+          %p
+            =inline_svg "open_ionic/svg/people.svg", class: "icon"
+            %span.labels Current Organization
+            =@user.organization
+        -if @user.location?
+          %p
+            =inline_svg "open_ionic/svg/location.svg", class: "icon"
+            %span.labels Current Location
+            =@user.location
+        -if !@user.experienced_industries.empty?
+          %p
+            =inline_svg "open_ionic/svg/flag.svg", class: "icon"
+            %span.labels Experienced Industries
+            =@user.experienced_industries_text
+        -if !@user.interested_industries.empty?
+          %p
+            =inline_svg "open_ionic/svg/heart.svg", class: "icon"
+            %span.labels Interested Industries
+            =@user.interested_industries_text
+    #user-contact
+      %span= inline_svg "open_ionic/svg/envelope-closed.svg", class: "contact-icon"
+      -if @user.linkedin_url?
+        %span= inline_svg "open_ionic/svg/envelope-open.svg", class: "contact-icon"

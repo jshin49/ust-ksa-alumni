@@ -6,19 +6,30 @@
   .columns.large-offset-1.small-offset-1.large-9.small-9.alumnus_description
     %h2.name= alumnus.name
     %p
-      =inline_svg "open_ionic/svg/book.svg", class: "icon"
+      %span.icon= fa_icon "book"
       =alumnus.majors_text
     %p
       -if alumnus.position?
-        =inline_svg "open_ionic/svg/person.svg", class: "icon"
+        %span.icon= fa_icon "user"
         =alumnus.position
       -if alumnus.organization?
-        =inline_svg "open_ionic/svg/people.svg", class: "icon"
+        %span.icon= fa_icon "users"
         =alumnus.organization
       -if alumnus.location?
-        =inline_svg "open_ionic/svg/location.svg", class: "icon"
+        =fa_icon "location-arrow", class: "icon fa-lg"
         =alumnus.location
-    %p
-      =inline_svg "open_ionic/svg/flag.svg", class: "icon"
-      =alumnus.experienced_industries_text
+    .row
+      %p.columns.large-10
+        %span.icon= fa_icon "industry"
+        =alumnus.experienced_industries_text
+      %p.columns.large-2
+        - unless alumnus.email.nil?
+          %span
+            = mail_to alumnus.email do
+              = fa_icon "inbox", class: "fa-2x float-right icon-big"
+        - unless alumnus.linkedin_url.nil?
+          %span
+            = link_to alumnus.linkedin_url do
+              = fa_icon "linkedin-square", class: "fa-2x float-right icon-big"
+
 %hr.divider

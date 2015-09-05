@@ -1,6 +1,8 @@
 //colors
-$main: #330099;
-$sub: #3300CC;
+$main: #000000;
+$text: #FFFFFF;
+$ust-blue: #1A1D71;
+
 
 html, body, #container, .container_column, #menu, #content_container{
   height: 100%;
@@ -15,6 +17,10 @@ body{
 
 #content_container{
 	margin-top:20px;
+}
+
+.top-bar {
+  margin-bottom: 50px;
 }
 
 .text-align-right{
@@ -34,17 +40,13 @@ body{
 
 .no-margin-padding, .no_margin_padding{
 	margin: 0;
-	padding:0;
-}
-
-.top-bar{
-  background:$main;
+	padding: 0;
 }
 
 .icon{
   width:10px;
   height:10px;
-  color:$sub;
+  color:$ust-blue;
 }
 
 .icon-big {
@@ -57,7 +59,7 @@ body{
 
 
 .labels{
-  color:$sub;
+  color:$ust-blue;
   margin-right:10px;
 }
 

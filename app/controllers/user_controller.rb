@@ -26,6 +26,20 @@ class UserController < ApplicationController
     end
   end
 
+  def autocomplete_organization
+    if params[:term]
+      @organizations = User.where("lower(organization) like lower(?)", "%#{params[:term]}%").collect(&:organization).uniq
+    end
+    render json: @organizations
+  end
+
+  def autocomplete_location
+    if params[:term]
+      @locations = User.where("lower(location) like lower(?)", "%#{params[:term]}%").collect(&:location).uniq
+    end
+    render json: @locations
+  end
+
   private
 
   def get_users_from_params

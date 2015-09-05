@@ -1,19 +1,21 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
   get 'home/index'
 
   devise_for :users, :controllers => { registrations: 'registrations', sessions: "sessions", omniauth_callbacks: "callbacks"}
-  
+
   as :user do
-    put 'users/:id' => 'registrations#update', :as => 'update_user'  
-    get 'users' => 'user#index', :as => 'users' 
-    get 'need_invite' => 'registrations#need_invite', :as => 'need_invite' 
+    put 'users/:id' => 'registrations#update', :as => 'update_user'
+    get 'users' => 'user#index', :as => 'users'
+    get 'need_invite' => 'registrations#need_invite', :as => 'need_invite'
   end
-  
+
   resources :user do
     resources :invitations, only: [:new, :create]
+    get :autocomplete_location, :on => :collection
+    get :autocomplete_organization, :on => :collection
   end
-  
-  
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

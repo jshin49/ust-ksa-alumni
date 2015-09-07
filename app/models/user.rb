@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :entrance_year, presence: true
   validates :graduation_year, presence: true
+  validates :email, presence: true
+  validates_with EntranceGraduationYearValidator
 
   has_many :interests, dependent: :destroy
   has_many :declarations, dependent: :destroy

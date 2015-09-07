@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-  
-  
+
+
   def new
     if params[:secret_key] && !Invitation.where(secret_key: params[:secret_key]).nil?
       	@invitation = Invitation.where(secret_key: params[:secret_key])
@@ -10,45 +10,45 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to need_invite_path
     end
   end
-  	
+
   def edit
     @status = determine_status(current_user.graduation_year)
-  
+
     @ssc = Major.where(school: "School of Science")
     @seng = Major.where(school: "School of Engineering")
     @sbm = Major.where(school: "School of Business")
     @huma = Major.where(school: "School of Humanities and Social Science")
     @ipo = Major.where(school: "Interdisciplinary Programs Office")
-    
+
     @favorite_industries = Industry.where(favorite:true)
     @other_industries = Industry.where(favorite:false)
-    
+
     @ticked_majors = current_user.majors
     @ticked_interested_industries = current_user.interested_industries
     @ticked_experienced_industries = current_user.experienced_industries
-    
+
   end
-  
+
   def update
     if params[:disconnect_linkedin]
       current_user.auth_token = nil
       current_user.provider = nil
     else
-    
+
       current_user.status = determine_status(current_user.graduation_year)
-      
+
       if params[:user][:location]
         current_user.location = params[:user][:location]
       end
-      
+
       if params[:user][:organization]
         current_user.organization = params[:user][:organization]
       end
-      
-  
+
+
       current_user.entrance_year = Date.civil(params[:user]["entrance_year(1i)"].to_i, params[:user]["entrance_year(2i)"].to_i)
       current_user.graduation_year = Date.civil(params[:user]["graduation_year(1i)"].to_i,params[:user]["graduation_year(2i)"].to_i)
-      
+
       if params[:major_ids]
         majors = []
         params[:major_ids].each do |major_id|
@@ -56,69 +56,73 @@ class RegistrationsController < Devise::RegistrationsController
         end
         current_user.majors = majors
       end
-      
+
       if params[:interested_industry_ids]
         industries = []
         params[:interested_industry_ids].each do |industry_id|
           industries << Industry.find_by_id(industry_id)
-        end   
+        end
         current_user.interested_industries = industries
       end
-      
+
       if params[:experienced_industry_ids]
         industries = []
         params[:experienced_industry_ids].each do |industry_id|
           industries << Industry.find_by_id(industry_id)
-        end   
+        end
         current_user.experienced_industries = industries
       end
     end
-    
+
     if current_user.save
       flash[:notice] = "Successfully Updated!"
       redirect_to root_path
     else
-      flash[:error] = "Could Update information. Please try again"
-      render edit_user_registration_path
+      error_msg = "Could Update information.\n"
+      current_user.errors.full_messages.each do |msg|
+          error_msg += "\n" + msg
+      end
+      flash[:error] = error_msg
+      redirect_to edit_user_registration_path
     end
   end
-  
+
   def create
     super
     if User.find_by_email(@user.email)
       Invitation.where(email: @user.email).destroy_all
     end
   end
-  
+
   def need_invite
-  
+
   end
-  
+
   protected
-  
+
   def after_sign_up_path_for(resource)
     edit_user_registration_path
   end
-  
+
   private
-  
+
   def determine_status(graduation_date)
     if (graduation_date.to_date.future?)
       "current"
     else
       "alumni"
     end
-  
+
   end
-  
+
   def sign_up_params
     params.require(:user).permit(:name, :entrance_year, :graduation_year, :email, :password, :password_confirmation,)
   end
-  
+
   def account_update_params
     params.require(:user).permit(:name, :entrance_year, :graduation_year, :email, :password, :password_confirmation, :current_password)
   end
-  
-  
+
+
 
 end

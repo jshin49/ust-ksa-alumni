@@ -89,7 +89,7 @@ class UserController < ApplicationController
   end
 
   def get_locations
-    sort_list User.distinct.pluck(:location).reject!(&:empty?)
+    sort_list User.distinct.pluck(:location).reject(&:empty?)
   end
 
   def get_schools

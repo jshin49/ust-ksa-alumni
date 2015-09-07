@@ -10,11 +10,10 @@
     .row#container
       =render "layouts/nav_menu"
       #content_container
-        #flash_container
-        - if flash[:notice]
-          .notice= flash[:notice]
-        - if flash[:error]
-          .error= flash[:error]
+        #flash_container.large-text-center
+          - if flash[:notice]
+            .notice.alert-box.info= flash[:notice]
+          - if flash[:error]
+            .alert.alert-box= flash[:error]
         #content
           =yield
-      

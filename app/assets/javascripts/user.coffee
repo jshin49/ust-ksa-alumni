@@ -37,6 +37,7 @@ $ ->
   $('#user_sign_up_submit').on 'click', ->
     $('#user_email').prop('disabled', false)
   $('.more_industries a').on 'click', (event)->
+    console.log "hi"
     $(this).hide()
     $(this).parent().next().show("slow")
     event.preventDefault()

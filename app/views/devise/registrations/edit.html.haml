@@ -1,60 +1,61 @@
-.row
-  %h2 Update your information
+%h2 Update your information
 = form_for(current_user, url: update_user_path(current_user), html: { method: :put }) do |f|
-  = devise_error_messages!  
-  %fieldset.row
+  = devise_error_messages!
+  %fieldset
     %legend Basic Info
-    .field.row
-      .small-2.large-2.columns.text-align-right
-        = f.label :email, class:'inline'
-      .small-5.large-5.columns.no_margin_padding    
-        = f.email_field :email, autofocus: true, disabled:true
-      .small-5.large-5.columns
-    .field.row
-      .small-2.large-2.columns.text-align-right
-        = f.label :entrance_year
-      .small-10.large-10.columns.no_margin_padding.date_selector
-        = f.date_select :entrance_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 9}}
-    .field.row
-      .small-2.large-2.columns.text-align-right
-        = f.label :graduation_year
-      .small-10.large-10.columns.no_margin_padding.date_selector
-        = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
-  
-  - if @status == "alumni"     
-    %fieldset.row
+    .row
+      .field
+        .small-2.large-2.columns.text-align-right
+          = f.label :email, class:'inline'
+        .small-5.large-5.columns.no_margin_padding
+          = f.email_field :email, autofocus: true, disabled:true
+        .small-5.large-5.columns
+    .row
+      .field
+        .small-2.large-2.columns.text-align-right
+          = f.label :entrance_year
+        .small-10.large-10.columns.no_margin_padding.date_selector
+          = f.date_select :entrance_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 9}}
+    .row
+      .field
+        .small-2.large-2.columns.text-align-right
+          = f.label :graduation_year
+        .small-10.large-10.columns.no_margin_padding.date_selector
+          = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
+
+  - if @status == "alumni"
+    %fieldset
       %legend Alumni Info
-      .row  
+      .row
         .small-offset-2.large-offset-2.small-3.large-3.columns
-          =render partial:'linkedin_button'      
+          =render partial:'linkedin_button'
       .field.row
-        .small-2.large-2.columns.text-align-right        
+        .small-2.large-2.columns.text-align-right
           = f.label :location, class:'inline'
         .small-5.large-5.columns.no_margin_padding
           = f.text_field :location
         .small-5.large-5.columns
-      .field.row 
+      .field.row
         .small-2.large-2.columns.text-align-right
           = f.label :position, class:'inline'
-        .small-5.large-5.columns.no_margin_padding 
+        .small-5.large-5.columns.no_margin_padding
           = f.text_field :position
         .small-5.large-5.columns
-      .field.row  
+      .field.row
         .small-2.large-2.columns.text-align-right
           = f.label :organization, class:'inline'
-        .small-5.large-5.columns.no_margin_padding   
+        .small-5.large-5.columns.no_margin_padding
           = f.text_field :organization
-        .small-5.large-5.columns          
-      = render partial: 'industry_selection', locals:{is_interested_industry:false, ticked: @ticked_experienced_industries}	      
-  %fieldset.row
-    %legend School Info  
+        .small-5.large-5.columns
+      = render partial: 'industry_selection', locals:{is_interested_industry:false, ticked: @ticked_experienced_industries}
+  %fieldset
+    %legend School Info
     = render 'major_selection'
     = render partial: 'industry_selection', locals:{is_interested_industry:true, ticked: @ticked_interested_industries}
-          
+
   .row.actions
     .small-centered.large-centered.columns.large-3.small-3
       = f.submit "Update", class: 'large button', id: 'update_button'
 .row
   .columns.large-1.small-1.large-offset-10.small-offset-10
     #{button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure? All your data will be lost. And we need you here!" }, method: :delete, class:'tiny button secondary'}
-

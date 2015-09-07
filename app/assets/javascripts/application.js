@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require foundation/foundation.topbar
+//= require foundation/foundation.alert
 //= require turbolinks
 //= require_tree .
 $(function(){ $(document).foundation(); });

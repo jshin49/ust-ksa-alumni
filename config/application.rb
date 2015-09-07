@@ -26,5 +26,11 @@ module UstKsaAlumni
     config.action_mailer.delivery_method = :sendmail
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true
+
+    # To override field with error in form
+    # http://stackoverflow.com/questions/5267998/rails-3-field-with-errors-wrapper-changes-the-page-appearance-how-to-avoid-t
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      "<div class=\"error_field\">#{html_tag}</div>".html_safe
+    }
   end
 end

@@ -5,6 +5,7 @@
     %title UstKsaAlumni
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
   %body
     .row#container
@@ -12,8 +13,16 @@
       #content_container
         #flash_container.large-text-center
           - if flash[:notice]
-            .notice.alert-box.info= flash[:notice]
+            .notice.alert-box.info
+              =simple_format(flash[:notice], {}, wrapper_tag: "span")
+              %a.close(href="#") &times;
           - if flash[:error]
-            .alert.alert-box= flash[:error]
+            .alert.alert-box
+              =simple_format(flash[:error], {}, wrapper_tag: "span")
+              %a.close(href="#") &times;
+          - if flash[:alert]
+            .alert.alert-box
+              =simple_format(flash[:alert], {}, wrapper_tag: "span")
+              %a.close(href="#") &times;
         #content
           =yield

@@ -20,8 +20,9 @@
         =alumnus.location
     .row
       %p.columns.large-10
-        %span.icon= fa_icon "industry"
-        =alumnus.experienced_industries_text
+        -unless alumnus.experienced_industries_text.empty?
+          %span.icon= fa_icon "industry"
+          =alumnus.experienced_industries_text
       %p.columns.large-2
         - unless alumnus.email.nil?
           %span

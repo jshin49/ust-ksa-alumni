@@ -46,12 +46,18 @@ class User < ActiveRecord::Base
     if array.nil?
       return ""
     end
-    s = array.first.name
+    if array.first.nil?
+      s = ""
+    else
+      s = array.first.name
+    end
     if array.count == 1
       return s
     end
     for i in 1..array.count-1
-      s += (" / " + array[i].name)
+      unless array[i].name.nil?
+        s += (" / " + array[i].name)
+      end
     end
     return s
   end

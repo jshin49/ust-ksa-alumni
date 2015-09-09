@@ -1,9 +1,13 @@
+require 'mixpanel-ruby'
+
 class InvitationsController < ApplicationController
     before_action :authenticate_user!, only: [:new]
-
+    before_action :set_mixpanel_tracker, only: [:new, :create]
    # GET /invitations/new
   def new
     @invitation = Invitation.new
+
+    @mixpanel_tracker.track(current_user.id, "Click Invitation")
   end
 
   # POST /invitations
@@ -15,6 +19,10 @@ class InvitationsController < ApplicationController
     respond_to do |format|
       if User.find_by_email(@invitation.email).nil? && @invitation.save
         InviteMailer.invite_friend(@user, @invitation).deliver_now
+
+        #track mixpanel
+        @mixpanel_tracker.track(@user.id, "Invite Friend")
+
         format.html { redirect_to users_path, notice: 'Invitation was successfully sent.' }
       else
         error_msg = "Cannot Send Invitation" + "\n"

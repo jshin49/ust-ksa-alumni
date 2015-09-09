@@ -1,9 +1,11 @@
 class UserController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_mixpanel_tracker, only: [:index]
 
   def index
-    @alumni = get_users_from_params.where(status:"alumni").uniq
-    @current_students = get_users_from_params.where(status:"current").uniq
+    total_students = get_users_from_params
+    @alumni = total_students.where(status:"alumni").uniq
+    @current_students = total_students.where(status:"current").uniq
 
     @schools = get_schools
     @majors = get_majors_with_declaration
@@ -44,18 +46,24 @@ class UserController < ApplicationController
 
   def get_users_from_params
     if params[:school]
+      @mixpanel_tracker.track(current_user.id, "Index", {"filter" => "school", "keyword" => params[:school]})
       return User.joins(:majors).where( majors: {school: params[:school]})
     elsif params[:major]
+      @mixpanel_tracker.track(current_user.id, "Index", {"filter" => "major", "keyword" => params[:major]})
       return User.joins(:majors).where(majors: {id: params[:major]})
     elsif params[:industry]
+      @mixpanel_tracker.track(current_user.id, "Index", {"filter" => "industry", "keyword" => params[:industry]})
       return User.joins(:experienced_industries).where(industries: {id: params[:industry]})
     elsif params[:entrance_year]
+      @mixpanel_tracker.track(current_user.id, "Index", {"filter" => "entrance_year", "keyword" => params[:entrance_year]})
       date_range = Time.new(params[:entrance_year],1,1)..Time.new(params[:entrance_year],12,31)
       return User.where(entrance_year: date_range)
     elsif params[:graduation_year]
+      @mixpanel_tracker.track(current_user.id, "Index", {"filter" => "graduation_year", "keyword" => params[:graduation_year]})
       date_range = Time.new(params[:graduation_year],1,1)..Time.new(params[:graduation_year],12,31)
       return User.where(graduation_year: date_range)
     elsif params[:location]
+      @mixpanel_tracker.track(current_user.id, "Index", {"filter" => "location", "keyword" => params[:location]})
       return User.where(location: params[:location])
     else
       return User.where(status: "alumni")

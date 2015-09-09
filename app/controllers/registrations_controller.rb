@@ -1,17 +1,22 @@
+require 'mixpanel-ruby'
+
 class RegistrationsController < Devise::RegistrationsController
-
-
+  before_filter :set_mixpanel_tracker
+  before_filter :track_cancel_account, only: [:destroy]
   def new
     if params[:secret_key] && !Invitation.where(secret_key: params[:secret_key]).nil?
       	@invitation = Invitation.where(secret_key: params[:secret_key])
         @user = User.new
         @user.email = @invitation.first.email
+        @mixpanel_tracker.track(@user.id, "Entered Sign Up")
     else
       redirect_to need_invite_path
     end
   end
 
   def edit
+    @mixpanel_tracker.track(current_user.id, "Click Update Profile")
+
     @status = determine_status(current_user.graduation_year)
 
     @ssc = Major.where(school: "School of Science")
@@ -76,6 +81,13 @@ class RegistrationsController < Devise::RegistrationsController
 
     if current_user.save
       flash[:notice] = "Successfully Updated!"
+
+      #update status to mixpanel
+      @mixpanel_tracker.people.append(current_user.id, {
+        "status" => current_user.status,
+        "location" => current_user.location
+      })
+      @mixpanel_tracker.track(@user.id, "Update Profile")
       redirect_to root_path
     else
       error_msg = "Could Update information.\n"
@@ -92,13 +104,24 @@ class RegistrationsController < Devise::RegistrationsController
     if User.find_by_email(@user.email)
       Invitation.where(email: @user.email).destroy_all
     end
+
+    @mixpanel_tracker.people.set(@user.id, {
+      "email" => @user.email,
+      "entrance_year" => @user.entrance_year,
+      "graduation_year" => @user.graduation_year})
+    @mixpanel_tracker.alias(@user.id, @user.id)
+    @mixpanel_tracker.track(@user.id, "Sign Up")
   end
 
   def need_invite
-
+    @mixpanel_tracker.track("", "Need Invite")
   end
 
   protected
+
+  def track_cancel_account
+    @mixpanel_tracker.track(current_user.id, "Cancel Account")
+  end
 
   def after_sign_up_path_for(resource)
     edit_user_registration_path

@@ -7,10 +7,14 @@
 }
 
 #sign_up_notice{
-  margin-top:20px;
   li{
     color:blue;
   }
+}
+
+.sign_up_error {
+  color:red;
+  font-weight: bold;
 }
 
 #linkedin_disconnect{

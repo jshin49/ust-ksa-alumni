@@ -15,13 +15,13 @@
         .small-2.large-2.columns.text-align-right
           = f.label :entrance_year
         .small-10.large-10.columns.no_margin_padding.date_selector
-          = f.date_select :entrance_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 9}}
+          = f.date_select :entrance_year, {start_year:2005, end_year:2025, discard_day: true, use_short_month: true, default: {month: 9}}
     .row
       .field
         .small-2.large-2.columns.text-align-right
           = f.label :graduation_year
         .small-10.large-10.columns.no_margin_padding.date_selector
-          = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true, default: {month: 5}}
+          = f.date_select :graduation_year, {start_year:2005, end_year:2025, discard_day: true, use_short_month: true, default: {month: 5}}
 
   - if @status == "alumni"
     %fieldset

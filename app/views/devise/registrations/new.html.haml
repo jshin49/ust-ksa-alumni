@@ -1,3 +1,10 @@
+%h2.row.small-offset-2.large-offset-2.small-10.large-10.columns.no_margin_padding Sign Up
+.row#sign_up_notice
+  %h5.subheader.small-offset-2.large-offset-2.small-10.large-10.columns.no_margin_padding
+    %ul
+      %li Only members of HKUST KSA (Korean Students' Association) can sign up.
+      %li Non-member invitation or sign up can be cancelled by admin.
+      %li You can only sign up with UST domain email.
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
   .field.row
@@ -5,6 +12,8 @@
       = f.label :name, class: 'inline'
     .small-5.large-5.columns.no_margin_padding
       = f.text_field :name, autofocus: true, autocomplete: "off"
+    -if flash[:name_error]
+      .sign_up_error= flash[:name_error]
     .small-5.large-5.columns
   .field.row
     .small-2.large-2.columns.text-align-right
@@ -27,17 +36,23 @@
     .small-5.large-5.columns.no_margin_padding
       = f.password_field :password_confirmation, autocomplete: "off"
     .small-5.large-5.columns
+    -if flash[:password_error]
+      .sign_up_error= flash[:password_error]
+  .row
+    .small-offset-2.large-offset-2.small-10.large-10.columns.no_margin_padding
+      -if flash[:graduation_year_error]
+        .sign_up_error= flash[:graduation_year_error]
   .field.row
     .small-2.large-2.columns.text-align-right
       = f.label :entrance_year
     .small-10.large-10.columns.no_margin_padding.date_selector
-      = f.date_select :entrance_year, {start_year:2000, discard_day: true, use_short_month: true,
+      = f.date_select :entrance_year, {start_year:2005, end_year:2025, discard_day: true, use_short_month: true,
       default: {month: 9}, class: 'select-date'}
   .field.row
     .small-2.large-2.columns.text-align-right
       = f.label :graduation_year
     .small-10.large-10.columns.no_margin_padding.date_selector
-      = f.date_select :graduation_year, {start_year:2000, discard_day: true, use_short_month: true,
+      = f.date_select :graduation_year, {start_year:2005, end_year:2025, discard_day: true, use_short_month: true,
       default: {month: 5}, class: 'select-date'}
   .actions.row
     .small-offset-2.large-offset-2.small-10.large-10.columns.no_margin_padding
@@ -45,9 +60,3 @@
 .row
   .small-offset-2.large-offset-2.small-10.large-10.columns.no_margin_padding
     = render "devise/shared/links"
-.row#sign_up_notice
-  %h5.subheader
-    %ul
-      %li Only members of HKUST KSA (Korean Students' Association) can sign up.
-      %li Non-member invitation or sign up can be cancelled by admin.
-      %li You can only sign up with UST domain email.

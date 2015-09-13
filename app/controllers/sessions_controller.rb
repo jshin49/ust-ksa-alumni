@@ -7,7 +7,9 @@ class SessionsController < Devise::SessionsController
 
 	def track_login_action
 		set_mixpanel_tracker
-		@mixpanel_tracker.track(current_user.id, "Login")
+		unless current_user.nil?
+			@mixpanel_tracker.track(current_user.id, "Login")
+		end
 	end
 
 	def track_logout_action

@@ -6,6 +6,11 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     if params[:secret_key] && !Invitation.where(secret_key: params[:secret_key]).nil?
       	@invitation = Invitation.where(secret_key: params[:secret_key])
+        if !@invitation.any?
+          flash[:error] = "Invitation is invalid.\n\nPlease sign in or get another invitation"
+          redirect_to new_user_session_path
+          return ;
+        end
         @user = User.new
         @user.email = @invitation.first.email
         @mixpanel_tracker.track(@user.id, "Entered Sign Up")

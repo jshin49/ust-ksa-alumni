@@ -17,6 +17,9 @@ class InvitationsController < ApplicationController
     @user = User.find(params[:user_id])
 
     respond_to do |format|
+      if !User.find_by_email(@invitation.email).nil?
+        @invitation.errors.add(:email, " is already used to sign up")
+      end
       if User.find_by_email(@invitation.email).nil? && @invitation.save
         InviteMailer.invite_friend(@user, @invitation).deliver_now
 
@@ -25,7 +28,7 @@ class InvitationsController < ApplicationController
 
         format.html { redirect_to users_path, notice: 'Invitation was successfully sent.' }
       else
-        error_msg = "Cannot Send Invitation" + "\n"
+        error_msg = "Cannot Send Invitation." + "\n"
         @invitation.errors.full_messages.each do |msg|
           error_msg += "\n" + msg
         end

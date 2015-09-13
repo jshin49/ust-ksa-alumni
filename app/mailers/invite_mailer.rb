@@ -1,7 +1,7 @@
-class InviteMailer < ActionMailer::Base 
+class InviteMailer < ActionMailer::Base
 
-  default from: "pj@ustksa.com"
-  
+  default from: "no-reply@ustksa.com"
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -10,7 +10,7 @@ class InviteMailer < ActionMailer::Base
   def invite_friend(user, invitation)
     @user = user
     @invitation = invitation
-    
-    mail to: @invitation.email, subject: "Invitation to HKUST KSA Alumni Page"
+
+    mail to: @invitation.email, subject: "Invitation to HKUST KSA Connect"
   end
 end

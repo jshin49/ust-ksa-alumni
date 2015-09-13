@@ -1,10 +1,12 @@
 Hi,
 
-<%= @user.name %> invited you to join HKUST Korean Students Association Alumni Page. 
+<%= @user.name %> invited you to join HKUST Korean Students Association Alumni Page.
 
 Please be noted that if you are not a member of KSA your sign up may be cancelled.
 
-Follow the link below for sign up. 
+Follow the link below for sign up.
+
+** Do not reply to this email.
 
 <%= url_for(controller: 'registrations',
-            action: 'new') + "?secret_key=#{@invitation.secret_key}"  %> 
+            action: 'new') + "?secret_key=#{@invitation.secret_key}"  %>

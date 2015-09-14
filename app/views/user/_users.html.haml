@@ -2,6 +2,8 @@
 	- if !alumni.nil?
 		- alumni.each do |alumnus|
 			=render partial: 'alumni', locals:{alumnus:alumnus}
+	- if alumni.nil? || alumni.empty?
+		%h3 No alumni with this condition.
 #current_student_container
 	- if !current_student.nil?
 		- current_student.each do |student|

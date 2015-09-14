@@ -3,6 +3,12 @@ class UserController < ApplicationController
   before_action :set_mixpanel_tracker, only: [:index]
 
   def index
+    if current_user.status.nil?
+      flash[:notice] = "Please update your information to view other people."
+      redirect_to edit_user_registration_path
+      return
+    end
+
     total_students = get_users_from_params
     @alumni = total_students.where(status:"alumni").uniq
     @current_students = total_students.where(status:"current").uniq

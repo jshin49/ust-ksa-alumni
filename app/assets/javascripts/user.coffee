@@ -19,7 +19,7 @@ $ ->
   autocomplete_url($('#user_organization'), "/user/autocomplete_organization")
 
   $('.more_industries a').on 'click', (event)->
-    console.log "hi"
+    console.log "click more choices"
     $(this).hide()
     $(this).parent().next().show("slow")
     event.preventDefault()

@@ -21,7 +21,7 @@ class SessionsController < Devise::SessionsController
 		if (resource.status.nil?)
 			edit_user_registration_path
 		else
-			super
+			users_path
 		end
 	end
 end

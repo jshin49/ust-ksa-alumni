@@ -11,6 +11,6 @@ class InviteMailer < ActionMailer::Base
     @user = user
     @invitation = invitation
 
-    mail to: @invitation.email, subject: "Invitation to HKUST KSA Connect"
+    mail to: @invitation.email, subject: "Invitation to connect@ustksa"
   end
 end

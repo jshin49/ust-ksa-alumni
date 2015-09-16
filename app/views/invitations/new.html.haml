@@ -1,7 +1,7 @@
 = form_for [current_user, @invitation] do |f|
   .row
     .columns.large-6.large-centered
-      = f.text_field :email, placeholder: "UST Domain Email"
+      = f.text_field :email, placeholder: "Email"
       .actions
         = f.submit 'Send Invitation', class: 'large button large-12 small-12'
   .row
@@ -12,5 +12,3 @@
             You can only invite members of HKUST KSA (Korean Students' Association)
           %li
             Non-member invitation or sign up can be cancelled by admin.
-          %li
-            You can only send invite to UST domain email.

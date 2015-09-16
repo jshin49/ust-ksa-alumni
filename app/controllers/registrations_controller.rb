@@ -45,7 +45,7 @@ class RegistrationsController < Devise::RegistrationsController
       current_user.provider = nil
     else
 
-      current_user.status = determine_status(current_user.graduation_year)
+      current_user.status = determine_status(Date.civil(params[:user]["graduation_year(1i)"].to_i,params[:user]["graduation_year(2i)"].to_i))
 
       if params[:user][:location]
         current_user.location = params[:user][:location]

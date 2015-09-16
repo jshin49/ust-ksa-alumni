@@ -27,6 +27,9 @@ module UstKsaAlumni
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true
 
+    # For Heroku deployment
+    config.assets.initialize_on_precompile = false
+
     # To override field with error in form
     # http://stackoverflow.com/questions/5267998/rails-3-field-with-errors-wrapper-changes-the-page-appearance-how-to-avoid-t
     config.action_view.field_error_proc = Proc.new { |html_tag, instance|

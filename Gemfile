@@ -57,6 +57,9 @@ gem 'devise'
 #For Env Variables
 gem 'figaro'
 
+#For logging
+gem 'le'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -25,7 +25,7 @@
 
   - if @status == "alumni"
     %fieldset
-      %legend Alumni Info
+      %legend#alumni-info Alumni Info
       .row
         .small-offset-2.large-offset-2.small-3.large-3.columns
           =render partial:'linkedin_button'
@@ -59,3 +59,17 @@
 .row
   .columns.large-1.small-1.large-offset-10.small-offset-10
     #{button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure? All your data will be lost. And we need you here!" }, method: :delete, class:'tiny button secondary'}
+
+- if @status == "alumni"
+  %ol#alumni-joyride.joyride-list{:"data-joyride" => ''}
+    %li{:"data-id"=>"alumni-info", :"data-text"=>"Next", :"data-options"=>"tip_location: top; prev_button: false"}
+      %p Hi, Alumni.
+      %p Tell us more about yourself now.
+    %li{:"data-id"=>"experienced-industry-header", :"data-text"=>"Next", :"data-prev-text"=>"Prev", :"data-options"=>"tip_location: top;"}
+      %p What is your experience?
+    %li{:"data-id"=>"major_selection", :"data-text"=>"Next", :"data-prev-text"=>"Prev", :"data-options"=>"tip_location: top;"}
+      %p What was your major?
+    %li{:"data-id"=>"interested-industry-header", :"data-text"=>"Next", :"data-prev-text"=>"Prev", :"data-options"=>"tip_location: top;"}
+      %p What is your interest?
+    %li{:"data-id"=>"update_button", :"data-text"=>"Finish", :"data-prev-text"=>"Prev", :"data-options"=>"tip_location: top;"}
+      %p Don't forget to click the button

@@ -24,6 +24,9 @@ $ ->
     $(this).parent().next().show("slow")
     event.preventDefault()
 
+  if $('#alumni-joyride') != null && $.cookie("joyride") == null
+    $.cookie("joyride", "true");
+    $(document).foundation('joyride', 'start')
   ## users
 
   dropDown = [$('#toggle_school'), $('#toggle_major'),$('#toggle_industry'),$('#toggle_entrance_year'),$('#toggle_graduation_year'),$('#toggle_location')]

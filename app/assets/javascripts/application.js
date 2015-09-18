@@ -13,9 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.cookie
 //= require foundation
 //= require foundation/foundation.topbar
 //= require foundation/foundation.alert
+//= require foundation/foundation.joyride
 //= require turbolinks
 //= require_tree .
 $(document).on('ready page:load', function () {

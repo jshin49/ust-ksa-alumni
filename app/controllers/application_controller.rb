@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def set_mixpanel_tracker
-    @mixpanel_tracker = Mixpanel::Tracker.new(ENV["MIXPANEL_TOKEN"])
+    @mixpanel_tracker = Mixpanel::Tracker.new(ENV["MIXPANEL_KEY"])
   end
 end

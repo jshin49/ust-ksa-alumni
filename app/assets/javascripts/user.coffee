@@ -3,6 +3,8 @@
 $ ->
   ## users/edit
 
+  console.log "javascript loaded correctly"
+
   autocomplete_url = (field, url) ->
     field.autocomplete
       minLength: 2,

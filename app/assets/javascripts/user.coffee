@@ -1,7 +1,9 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
-$ ->
+ready = ->
   ## users/edit
+
+  console.log "javascript loaded correctly"
 
   autocomplete_url = (field, url) ->
     field.autocomplete
@@ -65,3 +67,6 @@ $ ->
 
   $('#user_sign_up_submit').on 'click', ->
     $('#user_email').prop('disabled', false)
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

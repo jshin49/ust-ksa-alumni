@@ -6,6 +6,13 @@
     .row
       .field
         .small-2.large-2.columns.text-align-right
+          = f.label :name, class:'inline'
+        .small-5.large-5.columns.no_margin_padding
+          = f.text_field :name, autofocus: true
+        .small-5.large-5.columns
+    .row
+      .field
+        .small-2.large-2.columns.text-align-right
           = f.label :email, class:'inline'
         .small-5.large-5.columns.no_margin_padding
           = f.email_field :email, autofocus: true, disabled:true

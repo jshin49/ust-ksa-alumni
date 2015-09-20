@@ -10,7 +10,7 @@ class UserController < ApplicationController
     end
 
     total_students = get_users_from_params
-    @alumni = total_students.where(status:"alumni").uniq
+    @alumni = total_students.where(status:"alumni").order("graduation_year DESC").uniq
     @current_students = total_students.where(status:"current").uniq
 
     @schools = get_schools

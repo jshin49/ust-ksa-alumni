@@ -9,16 +9,16 @@
         %li
           = link_to root_path do
             =fa_icon "home", class: "nav-icon fa-lg"
-        %li
+        %li{:title=>"Find people"}
           = link_to users_path do
             =fa_icon "user", class: "nav-icon fa-lg"
-        %li
+        %li{:title=>"Invite people"}
           =link_to new_user_invitation_path(current_user) do
             =fa_icon "plus", class: "nav-icon fa-lg"
-        %li
+        %li{:title=>"Edit your info"}
           =link_to edit_registration_path(current_user) do
             =fa_icon "gear", class: "nav-icon fa-lg"
-        %li
+        %li{:title=>"Log out"}
           =link_to destroy_user_session_path, method: :delete do
             =fa_icon "sign-out", class: "nav-icon fa-lg"
       - else

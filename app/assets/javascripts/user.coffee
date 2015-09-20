@@ -26,8 +26,8 @@ ready = ->
     $(this).parent().next().show("slow")
     event.preventDefault()
 
-  if $('#alumni-joyride') != null && $.cookie("joyride") == null
-    $.cookie("joyride", "true");
+  if $('#alumni-joyride') != null && $.cookie("alumni-edit-joyride") == null
+    $.cookie("alumni-edit-joyride", "true");
     $(document).foundation('joyride', 'start')
   ## users
 

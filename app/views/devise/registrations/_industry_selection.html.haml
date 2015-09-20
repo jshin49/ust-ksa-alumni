@@ -11,8 +11,12 @@
       - @favorite_industries.each do |industry|
         = render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}
   .row
-    .more_industries
-      =link_to "Click to see more choices...", 'javascript:;'
+    -if is_interested_industry
+      .more_industries#interested_industry_more
+        =link_to "Click to see more choices...", 'javascript:;'
+    -else
+      .more_industries#experienced_industry_more
+        =link_to "Click to see more choices...", 'javascript:;'
     %ul.other_industries
       - @other_industries.each do |industry|
         = render partial: 'industry_check_box', locals: {shouldCheck: ticked.include?(industry), industry: industry, is_interested_industry: is_interested_industry}

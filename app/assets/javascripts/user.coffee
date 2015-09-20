@@ -33,11 +33,12 @@ ready = ->
 
   dropDown = [$('#toggle_school'), $('#toggle_major'),$('#toggle_industry'),$('#toggle_entrance_year'),$('#toggle_graduation_year'),$('#toggle_location')]
   resetDropDown = (count) ->
-   for i in [0..5]
-     if (i!=count)
+    $("#reset-filter").css('visibility','visible')
+    for i in [0..5]
+      if (i!=count)
        dropDown[i].val('');
        dropDown[i].css("font-weight","normal");
-     else
+      else
        dropDown[i].css("font-weight","bold");
 
 

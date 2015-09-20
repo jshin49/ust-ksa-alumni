@@ -1,13 +1,17 @@
-#toggle_bar.row
-  .column.large-2.small-2
-    =select :toggle, :school, @schools, {prompt: 'School'}, {class: 'toggle_dropdown_box'}
-  .column.large-2.small-2
-    =select :toggle, :major, @majors.collect {|i| [i.code, i.id]}, {prompt: 'Major'}, {class: 'toggle_dropdown_box'}
-  .column.large-2.small-2
-    =select :toggle, :industry, @industries.collect {|i| [i.name, i.id]}, {prompt: 'Industry'}, {class: 'toggle_dropdown_box'}
-  .column.large-2.small-2
-    =select :toggle, :entrance_year, @entrance_years, {prompt: 'Entrance Year'}, {class: 'toggle_dropdown_box'}
-  .column.large-2.small-2
-    =select :toggle, :graduation_year, @graduation_years, {prompt: 'Graduation Year'}, {class: 'toggle_dropdown_box'}
-  .column.large-2.small-2
-    =select :toggle, :location, @locations, {prompt: 'Location'}, {class: 'toggle_dropdown_box'}
+#toggle_bar
+  .row
+    .column.large-2.small-2
+      =select :toggle, :school, @schools, {prompt: 'School'}, {class: 'toggle_dropdown_box'}
+    .column.large-2.small-2
+      =select :toggle, :major, @majors.collect {|i| [i.code, i.id]}, {prompt: 'Major'}, {class: 'toggle_dropdown_box'}
+    .column.large-2.small-2
+      =select :toggle, :industry, @industries.collect {|i| [i.name, i.id]}, {prompt: 'Industry'}, {class: 'toggle_dropdown_box'}
+    .column.large-2.small-2
+      =select :toggle, :entrance_year, @entrance_years, {prompt: 'Entrance Year'}, {class: 'toggle_dropdown_box'}
+    .column.large-2.small-2
+      =select :toggle, :graduation_year, @graduation_years, {prompt: 'Graduation Year'}, {class: 'toggle_dropdown_box'}
+    .column.large-2.small-2
+      =select :toggle, :location, @locations, {prompt: 'Location'}, {class: 'toggle_dropdown_box'}
+  .row
+    .column.large-offset-10.large-2.small-offset-10.small-2#reset-filter
+      =link_to "Reset Filters", users_path

@@ -5,3 +5,6 @@
 $ ->
   $(".alert-box a.close").on 'click', ->
     $(".alert-box").slideUp()
+
+  $(document).ajaxStart(() -> $("#loading_spinner").css("visibility","visible"))
+  $(document).ajaxStop(()-> $("#loading_spinner").css("visibility","hidden"))

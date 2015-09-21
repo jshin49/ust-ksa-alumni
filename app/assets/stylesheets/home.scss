@@ -8,3 +8,13 @@ $ust-blue: #1A1D71;
   color: $ust-blue;
   text-align: center;
 }
+
+#loading_spinner {
+  visibility: hidden;
+  color: #2C31BD;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

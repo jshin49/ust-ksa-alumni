@@ -8,3 +8,6 @@ $ ->
 
   $(document).ajaxStart(() -> $("#loading_spinner").css("visibility","visible"))
   $(document).ajaxStop(()-> $("#loading_spinner").css("visibility","hidden"))
+
+  closeFlash = ()-> $("#flash_container").slideUp()
+  setTimeout(closeFlash, 1000)

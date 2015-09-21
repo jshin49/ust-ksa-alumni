@@ -5,9 +5,10 @@
     ="- #{alumnus.graduation_year.strftime("%b %Y")}"
   .columns.large-offset-1.small-offset-1.large-9.small-9.alumnus_description
     %h2.name= alumnus.name
-    %p
-      %span.icon= fa_icon "book"
-      =alumnus.majors_text
+    -unless alumnus.majors_text.empty?
+      %p
+        %span.icon= fa_icon "book"
+        =alumnus.majors_text
     %p
       -if alumnus.position?
         %span.icon= fa_icon "user"
@@ -18,6 +19,8 @@
       -if alumnus.location?
         =fa_icon "location-arrow", class: "icon fa-lg"
         =alumnus.location
+      -if alumnus.location.nil? && alumnus.organization.nil?
+        %br
     .row
       %p.columns.large-10
         -unless alumnus.experienced_industries_text.empty?

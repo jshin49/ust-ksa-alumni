@@ -45,7 +45,7 @@ class RegistrationsController < Devise::RegistrationsController
       current_user.provider = nil
     else
       current_user.name = params[:user][:name]
-      
+
       current_user.status = determine_status(Date.civil(params[:user]["graduation_year(1i)"].to_i,params[:user]["graduation_year(2i)"].to_i))
 
       if params[:user][:location]
@@ -89,7 +89,7 @@ class RegistrationsController < Devise::RegistrationsController
       flash[:notice] = "Successfully Updated!"
 
       #update status to mixpanel
-      @mixpanel_tracker.people.append(current_user.id, {
+      @mixpanel_tracker.people.set(current_user.id, {
         "status" => current_user.status,
         "location" => current_user.location
       })

@@ -43,6 +43,8 @@ class RegistrationsController < Devise::RegistrationsController
     if params[:disconnect_linkedin]
       current_user.auth_token = nil
       current_user.provider = nil
+      current_user.linkedin_url = nil
+      current_user.profile_pic_url = nil
     else
       current_user.name = params[:user][:name]
 

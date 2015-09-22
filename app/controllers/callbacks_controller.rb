@@ -1,3 +1,5 @@
+include UserHelper
+
 class CallbacksController < Devise::OmniauthCallbacksController
 
    	# https://www.digitalocean.com/community/tutorials/how-to-configure-devise-and-omniauth-for-your-rails-application
@@ -12,7 +14,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
     user = current_user
     user.auth_token = auth_hash['credentials']['token']
     user.provider = auth_hash['provider']
-    user.location = auth_hash['info']['location']['name']
+    user.location = get_location(auth_hash['info']['location']['name'])
     if auth_hash['extra']['raw_info']['pictureUrls']['values']
       user.profile_pic_url = auth_hash['extra']['raw_info']['pictureUrls']['values'].first
     end

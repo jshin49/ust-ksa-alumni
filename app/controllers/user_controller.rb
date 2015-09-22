@@ -3,6 +3,8 @@ class UserController < ApplicationController
   before_action :set_mixpanel_tracker, only: [:index]
 
   def index
+    @redirect_from_edit = true if params[:edited]
+
     if current_user.status.nil?
       flash[:notice] = "Please update your information to view other people."
       redirect_to edit_user_registration_path

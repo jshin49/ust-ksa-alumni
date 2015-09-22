@@ -94,7 +94,7 @@ class RegistrationsController < Devise::RegistrationsController
         "location" => current_user.location
       })
       @mixpanel_tracker.track(@user.id, "Update Profile")
-      redirect_to users_path
+      redirect_to users_path(edited:true)
     else
       error_msg = "Could Update information.\n"
       current_user.errors.full_messages.each do |msg|

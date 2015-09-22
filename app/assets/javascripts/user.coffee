@@ -29,7 +29,13 @@ ready = ->
   if $('#alumni-joyride') != null && $.cookie("alumni-edit-joyride") == null
     $.cookie("alumni-edit-joyride", "true");
     $(document).foundation('joyride', 'start')
+  else if $('#linkedin-joyride') != null
+    $('#alumni-joyride').remove()
+    $(document).foundation('joyride', 'start')
   ## users
+
+  if $("#index-joyride") != null
+    $(document).foundation('joyride', 'start')
 
   dropDown = [$('#toggle_school'), $('#toggle_major'),$('#toggle_industry'),$('#toggle_entrance_year'),$('#toggle_graduation_year'),$('#toggle_location')]
   resetDropDown = (count) ->

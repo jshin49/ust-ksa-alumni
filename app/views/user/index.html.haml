@@ -1,4 +1,10 @@
 =render partial: 'toggle_bar'
-#users_container	
-	=render partial: 'users', locals:{alumni: @alumni, current_student: @current_students} 
-	
+#users_container
+	=render partial: 'users', locals:{alumni: @alumni, current_student: @current_students}
+- if @redirect_from_edit
+	%ol#index-joyride.joyride-list{:"data-joyride" => ''}
+		%li{:"data-id"=>"me", :"data-text"=>"OK", :"data-options"=>"tip_location: left; prev_button: false"}
+			%p Check out how your updated profile looks like.
+		- if current_user.linkedin_url.nil?
+			%li{:"data-id"=>"my_inbox", :"data-text"=>"OK", :"data-options"=>"tip_location: right; prev_button: false"}
+				%p Linkedin connection makes it easier for people to reach out

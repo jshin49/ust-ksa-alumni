@@ -1,4 +1,4 @@
-.alumnus
+.alumnus{id: ("me" if alumnus == current_user)}
   .columns.large-2.small-2.alumnus_date
     ="#{alumnus.entrance_year.strftime("%b %Y")}"
     %br
@@ -28,7 +28,7 @@
           =alumnus.experienced_industries_text
       %p.columns.large-2
         - unless alumnus.email.nil?
-          %span
+          %span{id: ("my_inbox" if alumnus == current_user)}
             = mail_to alumnus.email do
               %span{:"title"=>"Send an email to this person"}
                 = fa_icon "inbox", class: "fa-2x float-right icon-big"

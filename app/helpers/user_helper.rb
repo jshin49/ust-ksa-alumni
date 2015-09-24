@@ -7,6 +7,9 @@ module UserHelper
     if name == "HK" || name == "Hong Kong" || name == "hong kong"
       return "Hong Kong"
     end
+    if name == "Seoul Korea" || name == "Seoul, Korea"
+      return "Seoul"
+    end
     return name
   end
 end

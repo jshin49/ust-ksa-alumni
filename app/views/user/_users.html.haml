@@ -1,10 +1,16 @@
 #alumni_container
 	- if !alumni.nil?
+		.alumni_student_divider
+			%span.line_header_text
+				Alumni
 		- alumni.each do |alumnus|
 			=render partial: 'alumni', locals:{alumnus:alumnus}
 	- if alumni.nil? || alumni.empty?
 		%h3 No alumni with this condition.
-#current_student_container
-	- if !current_student.nil?
-		- current_student.each do |student|
-			=render partial: 'student', locals:{student: student}
+	- unless current_student.nil? || current_student.empty?
+		.alumni_student_divider
+			%span.line_header_text
+				Current Students
+		#current_student_container
+			- current_student.each do |student|
+				=render partial: 'student', locals:{student: student}

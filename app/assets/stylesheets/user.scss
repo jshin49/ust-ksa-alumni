@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$ust-blue: #1A1D71;
+
 .date_selector select{
   width:25%;
 }
@@ -61,17 +63,23 @@ ul.major_list{
   margin-top:20px;
 }
 
-.alumnus{
+.current {
+  height: 150px;
+}
+
+.alumni {
+  height:200px;
+}
+
+.student{
   padding-top:10px;
   padding-bottom:10px;
-  height:200px;
-  .alumnus_date{
+  .date{
     position:relative;
     top:50%;
     transform: translateY(-50%);
     text-align:center;
   }
-  padding-top:10px;
 }
 
 .toggle_dropdown_box {
@@ -80,10 +88,6 @@ ul.major_list{
 
 .basic-info-card{
   margin-top: 3px;
-}
-
-#current_student_container {
-  visibility: hidden;
 }
 
 #user-contact{
@@ -105,4 +109,21 @@ ul.major_list{
 
 .fa-inbox:hover {
   color:blue;
+}
+
+.alumni_student_divider {
+  height: 2px;
+  background-color: $ust-blue;
+  text-align: center;
+  margin-bottom:40px;
+}
+
+.line_header_text {
+  background-color: white;
+  color: $ust-blue;
+  position: relative;
+  top: -0.5em;
+  font-size: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
 }

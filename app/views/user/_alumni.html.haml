@@ -1,9 +1,9 @@
-.alumnus{id: ("me" if alumnus == current_user)}
-  .columns.large-2.small-2.alumnus_date
+.alumni.student{id: ("me" if alumnus == current_user)}
+  .columns.large-2.small-2.date
     ="#{alumnus.entrance_year.strftime("%b %Y")}"
     %br
     ="- #{alumnus.graduation_year.strftime("%b %Y")}"
-  .columns.large-offset-1.small-offset-1.large-9.small-9.alumnus_description
+  .columns.large-offset-1.small-offset-1.large-9.small-9.description
     %h2.name= alumnus.name
     -unless alumnus.majors_text.empty?
       %p
@@ -22,11 +22,11 @@
       -if alumnus.location.nil? && alumnus.organization.nil?
         %br
     .row
-      %p.columns.large-10
+      %p.columns.large-10.small-10
         -unless alumnus.experienced_industries_text.empty?
           %span.icon= fa_icon "industry"
           =alumnus.experienced_industries_text
-      %p.columns.large-2
+      %p.columns.large-2.small-2
         - unless alumnus.email.nil?
           %span{id: ("my_inbox" if alumnus == current_user)}
             = mail_to alumnus.email do

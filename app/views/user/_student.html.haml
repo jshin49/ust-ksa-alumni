@@ -1,2 +1,19 @@
-.student
-	%h2= student.name
+.student.current{id: ("me" if student == current_user)}
+  .columns.large-2.small-2.date
+    ="#{student.entrance_year.strftime("%b %Y")}"
+    %br
+    ="- #{student.graduation_year.strftime("%b %Y")}"
+  .columns.large-offset-1.small-offset-1.large-9.small-9.student_description
+    %h2.name= student.name
+    -unless student.majors_text.empty?
+      %p
+        %span.icon= fa_icon "book"
+        =student.majors_text
+    .row
+      %p.columns.large-offset-10.large-2.small-offset-10.small-2
+        - unless student.email.nil?
+          %span{id: ("my_inbox" if student == current_user)}
+            = mail_to student.email do
+              %span{:"title"=>"Send an email to this person"}
+                = fa_icon "inbox", class: "fa-2x float-right icon-big"
+%hr.divider

@@ -26,15 +26,23 @@ ready = ->
     $(this).parent().next().show("slow")
     event.preventDefault()
 
-  if $('#alumni-joyride') != null && $.cookie("alumni-edit-joyride") == null
+  if $('#alumni-joyride').length && $.cookie("alumni-edit-joyride") == null
+    console.log "alumni edit joyride"
     $.cookie("alumni-edit-joyride", "true");
     $(document).foundation('joyride', 'start')
-  else if $('#linkedin-joyride') != null
+  else if $('#linkedin-joyride').length
+    console.log "linkedin-joyride"
     $('#alumni-joyride').remove()
     $(document).foundation('joyride', 'start')
   ## users
 
-  if $("#index-joyride") != null
+  if $("#index-joyride").length
+    console.log "index-joyride"
+    $(document).foundation('joyride', 'start')
+
+  if $("#filter-joyride").length && $.cookie("filter-joyride") ==null
+    console.log "filter-joyride"
+    $.cookie("filter-joyride", "true")
     $(document).foundation('joyride', 'start')
 
   dropDown = [$('#toggle_school'), $('#toggle_major'),$('#toggle_industry'),$('#toggle_entrance_year'),$('#toggle_graduation_year'),$('#toggle_location')]

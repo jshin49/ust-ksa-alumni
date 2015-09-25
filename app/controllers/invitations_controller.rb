@@ -26,7 +26,7 @@ class InvitationsController < ApplicationController
         #track mixpanel
         @mixpanel_tracker.track(@user.id, "Invite Friend")
 
-        format.html { redirect_to users_path, notice: 'Invitation was successfully sent.' }
+        format.html { redirect_to new_user_invitation_path, notice: 'Invitation was successfully sent.' }
       else
         error_msg = "Cannot Send Invitation." + "\n"
         @invitation.errors.full_messages.each do |msg|
